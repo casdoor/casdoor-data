@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-7qf6-h84j-8fq4",
+  "summary": "Impact Microsoft Teams media handling used mixed fetch paths for Graph metadata/content and attachment auth-retry flows.",
+  "description": "Impact\n\nMicrosoft Teams media handling used mixed fetch paths for Graph metadata/content and attachment auth-retry flows. Some\npaths bypassed the shared SSRF guard model and created inconsistent host/DNS enforcement across redirect/fetch hops.\n\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n\n- Latest published vulnerable version: 2026.2.25\n\n- Affected range: <= 2026.2.25\n\n- Planned patched version for next release: 2026.2.26\n\n\nTechnical Details\n\nThe Microsoft Teams attachment/media code previously relied on plugin-local fetch behavior in parts of the flow, instead\nof uniformly using shared guarded fetch logic with pinned DNS + policy checks. This could allow policy drift and SSRF\nboundary inconsistency between channel/plugin paths.\n\n\nThe fix unifies this path by:\n\n- routing Microsoft Teams Graph message/hosted-content/attachment fetches through shared SSRF-guarded fetch paths,\n\n- routing auth-scope fallback attachment downloads through the same guarded policy model,\n\n- centralizing hostname-suffix allowlist policy helpers in plugin-sdk so channel/plugins use the same allowlist normalization\nand policy construction behavior.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.26 or later. Commit(s) - 57334cd7d85174d5f951de01114fd5801b063564",
+  "rule": "version <= \"2026.2.25",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-7qf6-h84j-8fq4"
+  ]
+}

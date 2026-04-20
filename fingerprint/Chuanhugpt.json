@@ -1,0 +1,23 @@
+{
+  "name": "Chuanhugpt",
+  "description": "",
+  "severity": "info",
+  "product": "Chuanhugpt",
+  "vendor": "Chuanhugpt",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<meta name=\"application-name\" content=\"Chuanhu Chat\">"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "",
+    "path": "",
+    "part": "",
+    "regex": ""
+  }
+}

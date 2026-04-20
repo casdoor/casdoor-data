@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-vjx8-8p7h-82gr",
+  "summary": "Summary Marketplace Plugin Download Follows Redirects Without SSRF Protection Current Maintainer Triage - Status: open - Normalized severity: medium - Assessment: v2026.3.28 still uses bare redirect-following fetch in src/plugins/marketplace.ts for marketplace archives, and fixed-on-main only does not change that shipped SSRF exposure.",
+  "description": "Summary\n\nMarketplace Plugin Download Follows Redirects Without SSRF Protection\n\n\nCurrent Maintainer Triage\n\n- Status: open\n\n- Normalized severity: medium\n\n- Assessment: v2026.3.28 still uses bare redirect-following fetch in src/plugins/marketplace.ts for marketplace archives,\nand fixed-on-main only does not change that shipped SSRF exposure.\n\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n\n- Latest published npm version: 2026.3.31\n\n- Vulnerable version range: <=2026.3.28\n\n- Patched versions: >= 2026.3.31\n\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - 2ce44ca6a1302b166a128abbd78f72114f2f4f52 — 2026-03-31T12:59:42+01:00",
+  "rule": "version <= \"2026.3.28",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-vjx8-8p7h-82gr"
+  ]
+}

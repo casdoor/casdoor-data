@@ -1,0 +1,27 @@
+{
+  "name": "mlflow",
+  "description": "MLflow - Machine Learning lifecycle platform for experiment tracking, model management, and deployment.",
+  "severity": "info",
+  "product": "mlflow",
+  "vendor": "mlflow",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>MLflow</title>"
+      },
+      {
+        "pos": "body",
+        "value": "mlflow-ui-container"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/version",
+    "part": "body",
+    "regex": "^(\\d+\\.\\d+\\.\\d+.*)$"
+  }
+}

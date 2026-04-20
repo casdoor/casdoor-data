@@ -1,0 +1,23 @@
+{
+  "name": "n8n",
+  "description": "",
+  "severity": "info",
+  "product": "n8n-io",
+  "vendor": "n8n-io",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>n8n.io - Workflow Automation</title>"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "",
+    "path": "",
+    "part": "",
+    "regex": ""
+  }
+}

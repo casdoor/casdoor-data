@@ -1,0 +1,27 @@
+{
+  "name": "jupyter-server",
+  "description": "A backend component that provides core services and APIs for Jupyter web applications such as Notebook and Lab.",
+  "severity": "info",
+  "product": "jupyter-server",
+  "vendor": "jupyter",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>Jupyter Server</title>"
+      },
+      {
+        "pos": "body",
+        "value": "Jupyter Notebook"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/tree",
+    "part": "body",
+    "regex": "appVersion\":\"(\\d+\\.\\d+\\.?\\d*)"
+  }
+}

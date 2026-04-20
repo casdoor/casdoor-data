@@ -1,0 +1,31 @@
+{
+  "name": "OpenClaw",
+  "description": "OpenClaw is a personal AI assistant platform with tool-use, skill management, and gateway service.",
+  "severity": "info",
+  "product": "openclaw",
+  "vendor": "openclaw",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<openclaw-app>"
+      },
+      {
+        "pos": "body",
+        "value": "<title>OpenClaw Control</title>"
+      },
+      {
+        "pos": "body",
+        "value": "<title>Clawdbot Control</title>"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/__openclaw/control-ui-config.json",
+    "part": "body",
+    "regex": "\"serverVersion\":\\s?\"([\\d.]+[^\"]*)\""
+  }
+}

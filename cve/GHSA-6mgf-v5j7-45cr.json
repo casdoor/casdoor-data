@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-6mgf-v5j7-45cr",
+  "summary": "OpenClaw fetch-guard forwards custom authorization headers across cross-origin redirects",
+  "description": "OpenClaw's fetchWithSsrFGuard(...) followed cross-origin redirects while preserving arbitrary caller-supplied headers\nexcept for a narrow denylist (Authorization, Proxy-Authorization, Cookie, Cookie2). This allowed custom authorization\nheaders such as X-Api-Key, Private-Token, and similar sensitive headers to be forwarded to a different origin after a\nredirect.\n\n\nThe fix switches cross-origin redirect handling from a narrow sensitive-header denylist to a safe-header allowlist, so\nonly benign headers such as content negotiation and cache validators survive an origin change.\n\n\nAffected Packages / Versions\n\n\n- Package: openclaw (npm)\n\n- Affected versions: <= 2026.3.2\n\n- Patched version: 2026.3.7\n\n- Latest published npm version at patch time: 2026.3.2\n\n\nImpact\n\n\nA remote service that could trigger a redirect across origins could receive custom authorization credentials attached\nby OpenClaw callers. This can expose API keys, bearer-style custom headers, or private token headers intended only for\nthe original destination.\n\n\nVerification\n\n\n- pnpm check passed\n\n- pnpm test:fast passed\n\n- Focused redirect regression tests passed\n\n- pnpm exec vitest run --config vitest.gateway.config.ts still has unrelated current-main failures in src/gateway/server-channels.test.ts\nand src/gateway/server-methods/agents-mutate.test.ts",
+  "severity": "CRITICAL",
+  "suggestion": "Upgrade openclaw to >= 2026.3.7 or later. Commit(s) - 46715371b0612a6f9114dffd1466941ac476cef5",
+  "rule": "version <= \"2026.3.2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-6mgf-v5j7-45cr"
+  ]
+}

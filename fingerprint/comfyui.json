@@ -1,0 +1,23 @@
+{
+  "name": "comfyui",
+  "description": "A node-based graphical interface for creating AI art with diffusion models such as Stable Diffusion.",
+  "severity": "info",
+  "product": "comfyanonymous",
+  "vendor": "comfyui",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>ComfyUI</title>"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/system_stats",
+    "part": "body",
+    "regex": "\"comfyui_version\":\\s?\"(.*?)\""
+  }
+}

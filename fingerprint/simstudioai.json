@@ -1,0 +1,23 @@
+{
+  "name": "simstudioai",
+  "description": "",
+  "severity": "info",
+  "product": "simstudioai",
+  "vendor": "simstudioai",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "Sim is an open-source AI agent workflow builder"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "",
+    "path": "",
+    "part": "",
+    "regex": ""
+  }
+}

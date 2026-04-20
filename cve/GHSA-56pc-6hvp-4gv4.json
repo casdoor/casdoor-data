@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-56pc-6hvp-4gv4",
+  "summary": "OpenClaw OC-06: Arbitrary file read via $include directive",
+  "description": "Vulnerability\n\n\nPath traversal in config $include resolution allowed arbitrary local file reads outside the config directory boundary\n(CWE-22).\n\n\nAttack Vectors\n\n\n1. If an attacker can modify OpenClaw config, they can set $include to absolute paths (for example /etc/passwd) and read\nfiles accessible to the OpenClaw process.\n\n2. If an attacker can modify OpenClaw config, they can use traversal paths (for example ../../...) to escape the config\ndirectory.\n\n3. If an attacker can create symlinks inside the config directory, they can point includes to external files unless real-path\nchecks are enforced.\n\n4. Impact scope is bounded by the file permissions of the OpenClaw runtime user; this is not an unauthenticated remote-only\nvector by itself.\n\n\nImpact\n\n\nA successful exploit can expose local secrets and credentials readable by the OpenClaw process user, including API keys\nand private config material.\n\n\nAffected Packages / Versions\n\n\n- Package: openclaw (npm)\n\n- Vulnerable versions: <=2026.2.15\n\n- Patched versions: >=2026.2.17",
+  "severity": "CRITICAL",
+  "suggestion": "Upgrade openclaw to >=2026.2.17 or later. Commit(s) - d1c00dbb7c64a39e205464dae7f2a068420e91c1",
+  "rule": "version <= \"2026.2.15",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-56pc-6hvp-4gv4"
+  ]
+}

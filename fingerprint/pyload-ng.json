@@ -1,0 +1,23 @@
+{
+  "name": "pyload-ng",
+  "description": "A free and open-source download manager written in Python, providing a web-based interface for cross-platform download management.",
+  "severity": "info",
+  "product": "pyload",
+  "vendor": "pyload",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>Login - pyLoad </title>"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "",
+    "path": "",
+    "part": "",
+    "regex": ""
+  }
+}

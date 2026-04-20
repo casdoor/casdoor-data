@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-pg2v-8xwh-qhcc",
+  "summary": "Summary The optional Tlon (Urbit) extension previously accepted a user-provided base URL for authentication and used it to construct an outbound HTTP request, enabling server-side request forgery (SSRF) in affected deployments.",
+  "description": "Summary\n\nThe optional Tlon (Urbit) extension previously accepted a user-provided base URL for authentication and used it to construct\nan outbound HTTP request, enabling server-side request forgery (SSRF) in affected deployments.\n\n\nImpact\n\nThis only affects deployments that have installed and configured the Tlon (Urbit) extension, and where an attacker can\ninfluence the configured Urbit URL. Under those conditions, the gateway could be induced to make HTTP requests to attacker-chosen\nhosts (including internal addresses).\n\n\nDeployments that do not use the Tlon extension, or where untrusted users cannot change the Urbit URL, are not impacted.\n\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n\n- Affected versions: <= 2026.2.13\n\n\nFixed Versions\n\n- 2026.2.14\n\n\nDetails\n\nUrbit authentication now validates and normalizes the base URL and uses an SSRF guard that blocks private/internal hosts\nby default (opt-in: channels.tlon.allowPrivateNetwork).\n\n\nThanks @p80n-sec for reporting.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to 2026.2.14 or later. Commit(s) - bfa7d21e997baa8e3437657d59b1e296815cc1b1",
+  "rule": "version <= \"2026.2.13",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-pg2v-8xwh-qhcc"
+  ]
+}

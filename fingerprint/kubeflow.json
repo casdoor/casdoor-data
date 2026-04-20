@@ -1,0 +1,23 @@
+{
+  "name": "kubeflow",
+  "description": "An open-source platform that simplifies deploying and managing machine learning workflows on Kubernetes across the ML lifecycle.",
+  "severity": "info",
+  "product": "kubeflow",
+  "vendor": "kubeflow",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>Kubeflow Central Dashboard</title>"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/api/workgroup/env-info",
+    "part": "body",
+    "regex": "\"kubeflowVersion\":\"([^\"]+)\""
+  }
+}

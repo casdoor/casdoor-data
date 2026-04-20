@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-vr5g-mmx7-h897",
+  "summary": "Impact\\r\\n\\r\\nBrowser SSRF Policy Bypass via Interaction-Triggered Navigation.\\r\\n\\r\\nBrowser interactions could\\",
+  "description": "Impact\\r\\n\\r\\nBrowser SSRF Policy Bypass via Interaction-Triggered Navigation.\\r\\n\\r\\nBrowser interactions could\\",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to 2026.4.8 or later. The issue was fixed on main and is available in the patched npm",
+  "rule": "version <= \"2026.4.5\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-vr5g-mmx7-h897"
+  ]
+}

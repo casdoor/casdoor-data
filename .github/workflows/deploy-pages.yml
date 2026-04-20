@@ -1,0 +1,60 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Aggregate JSON data
+        run: |
+          python3 -c "
+          import json, glob, os
+
+          cve_list = []
+          for f in sorted(glob.glob('cve/*.json')):
+              with open(f, 'r', encoding='utf-8') as fp:
+                  cve_list.append(json.load(fp))
+
+          fingerprint_list = []
+          for f in sorted(glob.glob('fingerprint/*.json')):
+              with open(f, 'r', encoding='utf-8') as fp:
+                  fingerprint_list.append(json.load(fp))
+
+          result = {
+              'cveList': cve_list,
+              'fingerprintList': fingerprint_list
+          }
+
+          os.makedirs('_site', exist_ok=True)
+          with open('_site/data.json', 'w', encoding='utf-8') as fp:
+              json.dump(result, fp, ensure_ascii=False, indent=2)
+          "
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

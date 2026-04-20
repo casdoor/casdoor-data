@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-9q7v-8mr7-g23p",
+  "summary": "Summary SSRF via Unguarded fetch() in Marketplace Plugin Download and Ollama Model Discovery Current Maintainer Triage - Status: narrow - Normalized severity: medium - Assessment: Keep the shipped marketplace archive-fetch SSRF, but narrow out the Ollama half because it is operator-configured and overlaps weaker trust-model or duplicate SSRF ground.",
+  "description": "Summary\n\nSSRF via Unguarded fetch() in Marketplace Plugin Download and Ollama Model Discovery\n\n\nCurrent Maintainer Triage\n\n- Status: narrow\n\n- Normalized severity: medium\n\n- Assessment: Keep the shipped marketplace archive-fetch SSRF, but narrow out the Ollama half because it is operator-configured\nand overlaps weaker trust-model or duplicate SSRF ground.\n\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n\n- Latest published npm version: 2026.3.31\n\n- Vulnerable version range: <=2026.3.28\n\n- Patched versions: >= 2026.3.31\n\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - 8deb9522f3d2680820588b190adb4a2a52f3670b — 2026-03-30T20:08:38+01:00",
+  "rule": "version <= \"2026.3.28",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-9q7v-8mr7-g23p"
+  ]
+}

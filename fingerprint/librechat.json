@@ -1,0 +1,23 @@
+{
+  "name": "librechat",
+  "description": "LibreChat is an open-source AI chat platform supporting multiple AI providers, with customizable UI and multi-user support.",
+  "severity": "info",
+  "product": "librechat",
+  "vendor": "librechat",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>LibreChat</title>"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/api/version",
+    "part": "body",
+    "regex": "\"version\"\\s*:\\s*\"(\\d+\\.\\d+\\.?\\d*?)\""
+  }
+}

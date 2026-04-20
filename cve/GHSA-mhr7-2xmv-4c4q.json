@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-mhr7-2xmv-4c4q",
+  "summary": "Summary HTTP operator endpoints lack browser-origin validation in trusted-proxy mode Current Maintainer Triage - Status: narrow - Normalized severity: medium - Assessment: This is a real trusted-proxy HTTP CSRF or browser-origin gap in released tags, but it is not critical because it depends on identity-bearing trusted-proxy browser deployments rather than the shared-secret HTTP operator model.",
+  "description": "Summary\n\nHTTP operator endpoints lack browser-origin validation in trusted-proxy mode\n\n\nCurrent Maintainer Triage\n\n- Status: narrow\n\n- Normalized severity: medium\n\n- Assessment: This is a real trusted-proxy HTTP CSRF or browser-origin gap in released tags, but it is not critical because\nit depends on identity-bearing trusted-proxy browser deployments rather than the shared-secret HTTP operator model.\n\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n\n- Latest published npm version: 2026.3.31\n\n- Vulnerable version range: <=2026.3.28\n\n- Patched versions: >= 2026.3.31\n\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - 6b3f99a11f4d070fa5ed2533abbb3d7329ea4f0d — 2026-03-31T19:49:26+09:00",
+  "rule": "version <= \"2026.3.28",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-mhr7-2xmv-4c4q"
+  ]
+}

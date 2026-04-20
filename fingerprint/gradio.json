@@ -1,0 +1,27 @@
+{
+  "name": "gradio",
+  "description": "An open-source Python library for building web interfaces to share and interact with machine learning models.",
+  "severity": "info",
+  "product": "gradio",
+  "vendor": "gradio",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<script>window.gradio_config = {"
+      },
+      {
+        "pos": "body",
+        "value": "document.getElementsByTagName(\"gradio-app\");"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/",
+    "part": "body",
+    "regex": "window.gradio_config = {\"version\":\"(\\d+\\.\\d+\\.?\\d+?)"
+  }
+}
