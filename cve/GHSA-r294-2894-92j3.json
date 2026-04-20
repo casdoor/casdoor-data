@@ -5,7 +5,7 @@
   "description": "Summary\n\n\nThe exported session HTML viewer allowed stored XSS when untrusted session content included raw HTML markdown tokens or\nunescaped metadata fields.\n\n\nImpact\n\n\nOpening a crafted exported HTML session could execute attacker-controlled JavaScript in the viewer context. This can expose\nsession content in the page and enable phishing or UI spoofing in the trusted export view.\n\n\nAffected Packages / Versions\n\n\n- Package: openclaw (npm)\n\n- Affected versions: <= 2026.2.22-2\n\n- Patched version (released): >= 2026.2.23\n\n\nTechnical Details\n\n\nThe exporter rendered markdown with marked.parse(...) and inserted HTML via innerHTML, but did not override the html renderer\ntoken path. Raw HTML (for example <img ... onerror=...>) was passed through. Additional tree/header metadata fields were\ninterpolated without escaping in the export template.\n\n\nReproduction\n\n\n1. Create a session containing content like <img src=x onerror=alert(1)>.\n\n2. Export the session to HTML.\n\n3. Open the exported file.\n\n4. Observe script execution from injected content.\n\n\nRemediation\n\n\n- Added a marked html(token) renderer override that escapes raw HTML tokens.\n\n- Escaped previously unescaped tree/header metadata fields in the export template.\n\n- Added image MIME sanitization for exported data-URL image rendering.\n\n- Added regression tests for markdown/token and metadata escaping paths.",
   "severity": "MEDIUM",
   "suggestion": "Upgrade openclaw to >= 2026.2.23 or later. Commit(s) - f8524ec77a3999d573e6c6b8a5055bf35c49a2e6",
-  "rule": "version <= \"2026.2.22-2",
+  "rule": "version <= \"2026.2.22-2\"",
   "references": [
     "https://github.com/openclaw/openclaw/security/advisories/GHSA-r294-2894-92j3"
   ]

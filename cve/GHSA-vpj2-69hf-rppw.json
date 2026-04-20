@@ -5,7 +5,7 @@
   "description": "Summary\n\nWhen browser control started without explicit auth credentials, OpenClaw attempted to bootstrap auth automatically. In\naffected versions, if that bootstrap step threw an error, startup could continue and expose browser-control routes without\nauthentication.\n\n\nImpact\n\nOn affected deployments, a local process (or a loopback-reachable SSRF path) could access browser-control routes, including\nevaluate-capable actions, without auth.\n\n\nFix\n\nStartup now fails closed: if bootstrap auth fails and no explicit token/password is configured, browser-control startup\naborts.\n\n\nAffected and Patched Versions\n\n- Affected: <= 2026.2.26\n\n- Patched: 2026.3.1",
   "severity": "MEDIUM",
   "suggestion": "Upgrade openclaw to >= 2026.3.1 or later. Startup now fails closed: if bootstrap auth fails and no explicit",
-  "rule": "version <= \"2026.2.26",
+  "rule": "version <= \"2026.2.26\"",
   "references": [
     "https://github.com/openclaw/openclaw/security/advisories/GHSA-vpj2-69hf-rppw"
   ]

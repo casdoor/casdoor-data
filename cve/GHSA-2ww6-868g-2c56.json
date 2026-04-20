@@ -5,7 +5,7 @@
   "description": "Summary\n\n\nThe HTML session exporter (src/auto-reply/reply/export-html/template.js) interpolates img.mimeType directly into <img\nsrc=\"data:...\"> attributes without validation or escaping. A crafted mimeType value (e.g., x\" onerror=\"alert(1)) can break\nout of the attribute context and execute arbitrary JavaScript.\n\n\nImpact\n\n\nAn attacker who can control image entries in session data (via crafted tool results or session manipulation) can achieve\nXSS when the exported HTML is opened. The precondition is tighter than the main XSS finding (requires image content blocks\nwith a malicious mimeType), but exploitation is straightforward.\n\n\nAffected components\n\n\n- src/auto-reply/reply/export-html/template.js — line 1032 (tool result images), line 1306 (user message images)\n\n\nReproduction\n\n\n1. Craft a session entry with an image content block where mimeType is set to image/png\" onerror=\"alert(document.domain)\n\n2. Export the session to HTML\n\n3. Open the exported HTML — the injected onerror fires\n\n\nRemediation\n\n\n- Added sanitizeImageMimeType() helper that validates mimeType against a whitelist of known image MIME types\n\n- Falls back to application/octet-stream for unrecognized values, preventing attribute breakout\n\n\nFix\n\n\nhttps://github.com/openclaw/openclaw/pull/24140",
   "severity": "MEDIUM",
   "suggestion": "Upgrade openclaw to >= 2026.2.23 or later. https://github.com/openclaw/openclaw/pull/24140",
-  "rule": "version <= \"2026.2.22",
+  "rule": "version <= \"2026.2.22\"",
   "references": [
     "https://github.com/openclaw/openclaw/security/advisories/GHSA-2ww6-868g-2c56"
   ]
