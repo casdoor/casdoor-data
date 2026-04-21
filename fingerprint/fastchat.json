@@ -1,0 +1,23 @@
+{
+  "name": "fastchat",
+  "description": "An open-source platform for training, serving, and evaluating large language models.",
+  "severity": "info",
+  "product": "fastchat-controller",
+  "vendor": "lm-sys",
+  "httpInfo": {
+    "method": "POST",
+    "path": "/worker_get_status",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "model_names"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "",
+    "path": "",
+    "part": "",
+    "regex": ""
+  }
+}

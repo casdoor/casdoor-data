@@ -1,0 +1,23 @@
+{
+  "name": "pinchtab",
+  "description": "PinchTab is a standalone HTTP server that gives AI agents direct control over a Chrome browser via a REST API and built-in web dashboard.",
+  "severity": "info",
+  "product": "pinchtab",
+  "vendor": "pinchtab",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/instances",
+    "matchers": [
+      {
+        "pos": "header",
+        "value": "WWW-Authenticate: Bearer realm=\"pinchtab\""
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/health",
+    "part": "body",
+    "regex": "\"version\":\"([^\"]+)\""
+  }
+}

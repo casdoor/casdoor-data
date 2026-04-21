@@ -1,0 +1,23 @@
+{
+  "name": "ragflow",
+  "description": "An open-source RAG engine that enhances AI capabilities through deep document understanding and provides accurate, citation-backed answers.",
+  "severity": "info",
+  "product": "ragflow",
+  "vendor": "ragflow",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>RAGFlow</title>"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "",
+    "path": "",
+    "part": "",
+    "regex": ""
+  }
+}

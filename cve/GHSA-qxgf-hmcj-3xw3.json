@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-qxgf-hmcj-3xw3",
+  "summary": "Summary The fal provider used raw fetches for both provider API traffic and returned image download URLs instead of the existing SSRF-guarded fetch path.",
+  "description": "Summary\n\n\nThe fal provider used raw fetches for both provider API traffic and returned image download URLs instead of the existing\nSSRF-guarded fetch path.\n\n\nImpact\n\n\nA malicious or compromised fal relay could make the gateway fetch internal URLs and expose metadata or internal service\nresponses through the image pipeline.\n\n\nAffected Component\n\n\nextensions/fal/image-generation-provider.ts\n\n\nFixed Versions\n\n\n- Affected: <= 2026.3.24\n\n- Patched: >= 2026.3.28\n\n- Latest stable 2026.3.28 contains the fix.\n\n\nFix\n\n\nFixed by commit 80d1e8a11a (fal: guard image fetches).",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Fixed by commit 80d1e8a11a (fal: guard image fetches).",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-qxgf-hmcj-3xw3"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "dify",
+  "description": "",
+  "severity": "info",
+  "product": "dify",
+  "vendor": "dify",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>Dify</title>"
+      },
+      {
+        "pos": "icon",
+        "value": "97378986"
+      },
+      {
+        "pos": "body",
+        "value": "content=\"Dify"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/console/api/version",
+    "part": "header",
+    "regex": "x-version:\\s*(\\d+\\.\\d+\\.?\\d+?)"
+  }
+}

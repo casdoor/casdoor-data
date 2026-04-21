@@ -1,0 +1,23 @@
+{
+  "name": "vllm",
+  "description": "A high-performance open-source engine for efficient inference and serving of large language models, optimized for speed and memory usage.",
+  "severity": "info",
+  "product": "vllm",
+  "vendor": "vllm-project",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/version",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "{\"version\":"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/version",
+    "part": "body",
+    "regex": "{\"version\":\"(\\d+\\.\\d+\\.?\\d+?)"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-x22m-j5qq-j49m",
+  "summary": "Summary The Feishu extension could fetch attacker-controlled remote URLs in two paths without SSRF protections: - sendMediaFeishu(mediaUrl) - Feishu DocX markdown image URLs (write/append -> image processing) Affected versions - < 2026.2.14 Patched versions - >= 2026.2.14 Impact If an attacker can influence tool calls (directly or via prompt injection), they may be able to trigger requests to internal services and re-upload the response as Feishu media.",
+  "description": "Summary\n\nThe Feishu extension could fetch attacker-controlled remote URLs in two paths without SSRF protections:\n\n\n- sendMediaFeishu(mediaUrl)\n\n- Feishu DocX markdown image URLs (write/append -> image processing)\n\n\nAffected versions\n\n- < 2026.2.14\n\n\nPatched versions\n\n- >= 2026.2.14\n\n\nImpact\n\nIf an attacker can influence tool calls (directly or via prompt injection), they may be able to trigger requests to internal\nservices and re-upload the response as Feishu media.\n\n\nRemediation\n\nUpgrade to OpenClaw 2026.2.14 or newer.\n\n\nNotes\n\nThe fix routes Feishu remote media fetching through hardened runtime helpers that enforce SSRF policies and size limits.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.2.14 or later. Commit(s) - 5b4121d6011a48c71e747e3c18197f180b872c5d",
+  "rule": "version < \"2026.2.14\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-x22m-j5qq-j49m"
+  ]
+}

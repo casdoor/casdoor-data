@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-vj3g-5px3-gr46",
+  "summary": "Summary OpenClaw’s Feishu media download flow used untrusted Feishu media keys (imageKey / fileKey) when building temporary file paths in extensions/feishu/src/media.ts.",
+  "description": "Summary\n\n\nOpenClaw’s Feishu media download flow used untrusted Feishu media keys (imageKey / fileKey) when building temporary file\npaths in extensions/feishu/src/media.ts.\n\nBecause those keys were interpolated directly into temp-file paths, traversal segments could escape the temp directory\nand redirect writes outside os.tmpdir().\n\n\nImpact\n\n\nThis is an arbitrary file write issue (within the OpenClaw process file permissions).\n\nIf an attacker can control Feishu media key values returned to the client (for example via compromised upstream response\npath), they can influence where downloaded bytes are written.\n\n\nAffected Packages / Versions\n\n\n- Package: openclaw (npm)\n\n- Latest published npm version at triage: 2026.2.17\n\n- Affected versions: <= 2026.2.17\n\n- Fixed version: 2026.2.19\n\n\nRemediation\n\n\nThe fix removes key-derived temp-file naming and keeps downloads in safe temp locations. Additional hardening isolates\nSDK writeFile calls in per-download temp directories (mkdtemp) with deterministic cleanup, enforces Feishu key trust-boundary\nvalidation, and adds a repository guard test against dynamic path.join(os.tmpdir(), \\...${...}\\) patterns in runtime code.\n\n\nThanks @allsmog for reporting.",
+  "severity": "CRITICAL",
+  "suggestion": "Upgrade openclaw to >= 2026.2.19 or later. Commit(s) - c821099157a9767d4df208c6b12f214946507871 - cdb00fe2428000e7a08f9b7848784a0049176705",
+  "rule": "version <= \"2026.2.17\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-vj3g-5px3-gr46"
+  ]
+}

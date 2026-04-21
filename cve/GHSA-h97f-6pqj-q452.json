@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-h97f-6pqj-q452",
+  "summary": "Summary\\nOpenClaw's SSRF IP classifier did not treat IPv6 multicast literals (ff00::/8) as blocked/private-internal.\\",
+  "description": "Summary\\nOpenClaw's SSRF IP classifier did not treat IPv6 multicast literals (ff00::/8) as blocked/private-internal.\\",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to >= 2026.2.25 or later. Commit(s) - baf656bc6fd7f83b6033e6dbc2548ec75028641f",
+  "rule": "version <= \"2026.2.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-h97f-6pqj-q452"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-g86v-f9qv-rh6m",
+  "summary": "Summary The SSRF/IP classifier treated several IPv6 special-use ranges as public and allowed fetches to proceed.",
+  "description": "Summary\n\n\nThe SSRF/IP classifier treated several IPv6 special-use ranges as public and allowed fetches to proceed.\n\n\nImpact\n\n\nAn attacker who controlled a fetched URL could target internal or non-routable IPv6 addresses that should have been blocked\nby the SSRF guard.\n\n\nAffected Component\n\n\nsrc/shared/net/ip.ts, src/infra/net/ssrf.*\n\n\nFixed Versions\n\n\n- Affected: <= 2026.3.24\n\n- Patched: >= 2026.3.28\n\n- Latest stable 2026.3.28 contains the fix.\n\n\nFix\n\n\nFixed by commit d61f8e5672 (Net: block missing IPv6 special-use ranges).",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Fixed by commit d61f8e5672 (Net: block missing IPv6 special-use",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-g86v-f9qv-rh6m"
+  ]
+}

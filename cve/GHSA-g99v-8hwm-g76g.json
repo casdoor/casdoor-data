@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-g99v-8hwm-g76g",
+  "summary": "Summary Gemini web_search citation redirect resolution used a private-network-allowing SSRF policy.",
+  "description": "Summary\n\nGemini web_search citation redirect resolution used a private-network-allowing SSRF policy. A citation URL redirect could\ntarget loopback/private/internal destinations and be fetched by the gateway.\n\n\nImpact\n\nAn attacker who can influence citation redirect targets could trigger internal-network requests from the OpenClaw host.\n\n\nFix\n\nCitation redirect resolution now uses strict/default SSRF policy (no private-network override), blocking localhost/private/internal\nredirect targets.\n\n\nAffected and Patched Versions\n\n- Affected: <= 2026.2.26\n\n- Patched: 2026.3.1",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.1 or later. Citation redirect resolution now uses strict/default SSRF policy",
+  "rule": "version <= \"2026.2.26\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-g99v-8hwm-g76g"
+  ]
+}

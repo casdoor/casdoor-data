@@ -1,0 +1,23 @@
+{
+  "name": "langflow",
+  "description": "Langflow is a powerful tool for building and deploying AI-powered agents and workflows.",
+  "severity": "info",
+  "product": "langflow",
+  "vendor": "langflow-ai",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>Langflow</title>"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/api/v1/version",
+    "part": "body",
+    "regex": "\"version\":\"(.*?)\","
+  }
+}
