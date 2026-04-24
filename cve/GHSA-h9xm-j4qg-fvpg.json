@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-h9xm-j4qg-fvpg",
+  "summary": "OpenClaw Experimental apply_patch may bypass workspace-only checks in opt-in sandbox mounts (off by default)",
+  "description": "Summary\nIn some opt-in sandbox configurations, the experimental apply_patch tool did not consistently apply workspace-only checks to mounted paths (for example /agent/...).\n\nImpact\nThis does not affect default installs.\n\nDefault posture:\n- agents.defaults.sandbox.mode=off (sandbox disabled by default)\n- tools.exec.applyPatch.enabled=false (experimental tool disabled by default)\n\nThis behavior applies only when all of the following are enabled/configured:\n- sandbox mode,\n- experimental apply_patch,\n- workspace-only expectations (tools.fs.workspaceOnly=true and/or tools.exec.applyPatch.workspaceOnly=true),\n- and writable mounts outside workspace.\n\nUnder that opt-in setup, apply_patch operations could target mounted paths outside the workspace root.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Affected published versions: <= 2026.2.22-2\n- Fixed in code on main: commit 6634030be31e1a1842967df046c2f2e47490e6bf\n- Patched release: 2026.2.23\n\nTechnical Details\nIn the sandbox path flow, apply_patch used sandbox.bridge.resolvePath(...) without applying the same workspace-root assertion used by other filesystem tools. The fix makes apply_patch follow the same workspace-only enforcement for sandbox-resolved paths (unless explicitly disabled with tools.exec.applyPatch.workspaceOnly=false).",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.23 or later. Commit(s) - 6634030be31e1a1842967df046c2f2e47490e6bf",
+  "rule": "version <= \"2026.2.22-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-h9xm-j4qg-fvpg"
+  ]
+}

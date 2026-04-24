@@ -22,6 +22,6 @@
     "method": "GET",
     "path": "/",
     "part": "body",
-    "regex": "window.gradio_config = {\"version\":\"(\\d+\\.\\d+\\.?\\d+?)"
+    "regex": "window.gradio_config = {\"version\":\"(\\d+\\.\\d+\\.?\\d+?)\""
   }
 }

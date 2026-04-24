@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-hhff-fj5f-qg48",
+  "summary": "OpenClaw Discord audio preflight transcription before member authorization",
+  "description": "Summary\nDiscord audio preflight transcription before member authorization\n\nCurrent Maintainer Triage\n- Status: narrow\n- Normalized severity: medium\n- Assessment: v2026.3.28 still runs Discord audio preflight before member allowlist rejection, but this is the same pre-auth resource-consumption class and not the high-severity auth-bypass framing in the draft.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - ee52f64226a03efadfdf1e3b759e13424a3d4e41 — 2026-03-30T14:38:22+01:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-hhff-fj5f-qg48"
+  ]
+}

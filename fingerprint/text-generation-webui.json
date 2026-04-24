@@ -1,0 +1,18 @@
+{
+  "name": "text-generation-webui",
+  "description": "Text Generation Web UI is an open-source Gradio-based web interface for running Large Language Models locally, developed by oobabooga. It supports multiple backends including llama.cpp, transformers, and others.",
+  "severity": "info",
+  "product": "text-generation-webui",
+  "vendor": "oobabooga",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "Text Generation Web UI"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

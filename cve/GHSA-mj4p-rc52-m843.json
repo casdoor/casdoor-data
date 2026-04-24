@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-mj4p-rc52-m843",
+  "summary": "OpenClaw Sandbox staged writes could escape the verified parent directory before commit",
+  "description": "Summary\nIn affected versions of openclaw, sandbox fs-bridge writes validated the destination before commit, but temporary file creation and population were not pinned to a verified parent directory. A raced parent-path alias change could cause the staged temp file to be created outside the intended writable mount before the final guarded replace step.\n\nImpact\nThis is a sandbox boundary bypass affecting integrity and availability within the writable mount scope. Attacker-controlled bytes could be written outside the intended validated path before the final guarded step ran.\n\nAffected Packages and Versions\n- Package: openclaw (npm)\n- Affected versions: <= 2026.3.8\n- Fixed in: 2026.3.11\n\nTechnical Details\nThe older staging flow created and wrote the temporary file using target-directory shell path operations before the final replace step revalidated the destination. That meant the last guard protected only the final rename, not the earlier temp-file materialization path.\n\nFix\nOpenClaw now resolves a pinned mount root plus relative parent path, creates the temporary file inside the verified parent directory, and performs the final atomic replace from that pinned directory context. The fix shipped in openclaw@2026.3.11.\n\nWorkarounds\nUpgrade to 2026.3.11 or later.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to 2026.3.11 or later. OpenClaw now resolves a pinned mount root plus relative parent path, creates the temporary file inside the verified parent directory, and performs the final atomic replace from that pinned directory context. The fix shipped in openclaw@2026.3.11.",
+  "rule": "version <= \"2026.3.8\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-mj4p-rc52-m843"
+  ]
+}

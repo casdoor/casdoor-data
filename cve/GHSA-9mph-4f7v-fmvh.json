@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-9mph-4f7v-fmvh",
+  "summary": "OpenClaw Agent avatar symlink traversal in gateway session metadata",
+  "description": "Summary\nA crafted local avatar path could follow a symlink outside the agent workspace and return arbitrary file contents as a base64 data: URL in gateway responses.\n\nImpact\n- Confidentiality impact: local file read in the gateway process context.\n- Exfiltration path: agents.list can return the resulting avatarUrl payload.\n\nAffected Components\n- src/gateway/session-utils.ts (resolveIdentityAvatarUrl)\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Introduced: v2026.1.21\n- Affected published versions: <= 2026.2.21-2\n- Planned patched version: 2026.2.22\n\nRemediation\n- Resolve workspace and avatar paths with realpath and enforce realpath containment.\n- Open files with O_NOFOLLOW when available.\n- Compare pre-open and opened file identity (dev/ino) to block swap races.\n- Add regression tests for outside-workspace symlink rejection and in-workspace symlink allowance.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.22 or later. Commit(s) - 3d0337504349954237d09e4d957df5cb844d5e77",
+  "rule": "version <= \"2026.2.21-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-9mph-4f7v-fmvh"
+  ]
+}

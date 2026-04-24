@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-cfvj-7rx7-fc7c",
+  "summary": "OpenClaw stageSandboxMedia destination symlink traversal can overwrite files outside sandbox workspace",
+  "description": "Summary\nstageSandboxMedia allowed destination symlink traversal during media staging, which could overwrite files outside the sandbox workspace root.\n\nImpact\nWhen sandbox media staging handled inbound files, destination writes under media/inbound were not destination-alias-safe. If a symlink existed in that destination path, the write could follow it and overwrite host files outside the intended sandbox workspace boundary.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published version checked: 2026.3.1\n- Affected: <= 2026.3.1\n- Patched versions: >= 2026.3.2 (released)\n\nRoot Cause\nstageSandboxMedia validated source paths but wrote destination files with a direct copy path that did not enforce destination boundary/alias checks.\n\nRemediation\nThe fix routes staging writes through root-scoped safe write primitives for both local and SCP-staged attachments, preventing destination symlink traversal escapes.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.2 or later. Commit(s) - 17ede52a4be3034f6ec4b883ac6b81ad0101558a",
+  "rule": "version <= \"2026.3.1\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-cfvj-7rx7-fc7c"
+  ]
+}

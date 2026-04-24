@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-x2m8-53h4-6hch",
+  "summary": "OpenClaw Discord voice ingress authorization can be bypassed via channel, name, and stale-role validation gaps",
+  "description": "Summary\nDiscord voice ingress authorization can be bypassed via channel, name, and stale-role validation gaps\n\nCurrent Maintainer Triage\n- Status: narrow\n- Normalized severity: medium\n- Assessment: Real in shipped v2026.3.28 Discord voice ingress, but impact is channel/member allowlist bypass rather than a broader critical auth break and mainline fix is unreleased.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - dba96e7507e0900f120e5e28e57755d69bf78759 — 2026-03-31T21:29:13+09:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-x2m8-53h4-6hch"
+  ]
+}

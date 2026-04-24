@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-v8wv-jg3q-qwpq",
+  "summary": "OpenClaw message tool media parameter bypasses tool policy filesystem isolation",
+  "description": "Summary\n\nThe message tool accepted mediaUrl and fileUrl aliases without applying the same sandbox localRoots validation as the canonical media path handling.\n\nImpact\n\nA caller constrained to sandbox media roots could read arbitrary local files by routing them through the alias parameters.\n\nAffected Component\n\nsrc/infra/outbound/message-action-params.ts, src/infra/outbound/message-action-runner.ts\n\nFixed Versions\n\n- Affected: < 2026.3.24\n- Patched: >= 2026.3.24\n- Latest stable 2026.3.28 contains the fix.\n\nFix\n\nFixed by commit 1d7cb6fc03 (fix: close sandbox media root bypass for mediaUrl/fileUrl aliases).",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.3.24 or later. Fixed by commit 1d7cb6fc03 (fix: close sandbox media root bypass for mediaUrl/fileUrl aliases).",
+  "rule": "version < \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-v8wv-jg3q-qwpq"
+  ]
+}

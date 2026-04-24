@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-5wj5-87vq-39xm",
+  "summary": "OpenClaw Node Pairing Reconnect Command Escalation Bypasses operator.admin Scope Requirement",
+  "description": "Impact\n\nNode Pairing Reconnect Command Escalation Bypasses operator.admin Scope Requirement.\n\nA previously paired node could reconnect with a broader command set, including exec-capable commands, without forcing the operator/admin re-pairing path.\n\nOpenClaw is a user-controlled local assistant. This advisory is scoped to the OpenClaw trust model and does not assume a multi-tenant service boundary.\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n- Affected versions: <=2026.4.5\n- Patched versions: 2026.4.8\n\nFix\n\nThe issue was fixed on main and is available in the patched npm version listed above. The verified fixed tree is commit d7c3210cd6f5fdfdc1beff4c9541673e814354d5.\n\nVerification\n\nThe fix was re-checked against main before publication, including targeted regression tests for the affected security boundary.\n\nCredits\n\nThanks @zsxsoft and @KeenSecurityLab for reporting.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to 2026.4.8 or later. The issue was fixed on main and is available in the patched npm version listed above. The verified fixed tree is commit d7c3210cd6f5fdfdc1beff4c9541673e814354d5.",
+  "rule": "version <= \"2026.4.5\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-5wj5-87vq-39xm"
+  ]
+}

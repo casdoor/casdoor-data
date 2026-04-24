@@ -10,7 +10,7 @@
     "matchers": [
       {
         "pos": "body",
-        "value": "{\"version\":"
+        "value": "{\"version\":\""
       }
     ]
   },

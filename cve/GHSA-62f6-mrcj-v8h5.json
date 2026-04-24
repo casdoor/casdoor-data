@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-62f6-mrcj-v8h5",
+  "summary": "OpenClaw Runtime /debug override path accepted prototype-reserved keys",
+  "description": "Summary\nOpenClaw accepted prototype-reserved keys in runtime /debug set override object values (__proto__, constructor, prototype).\n\nImpact\n/debug is disabled by default, and exploitation requires an already authorized /debug set caller. No unauthenticated vector was identified.\n\nThis issue affects runtime in-memory overrides only (non-persistent and cleared on restart/reset). Given the required prior authorization boundary, this is treated as defense-in-depth hardening for command flag evaluation.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published vulnerable version confirmed: 2026.2.19-2\n- Vulnerable range: <= 2026.2.19-2\n- Patched in planned next release: 2026.2.21\n\nTechnical Details\n- Runtime override merges now block reserved prototype keys during deep merge.\n- Runtime override writes now sanitize nested object values to remove reserved prototype keys before storing overrides.\n- Restricted command gates (bash, config, debug) now require own-property boolean flags, preventing inherited prototype values from enabling commands.",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to >=2026.2.21 or later. Commit(s) - fbb79d4013000552d6a2c23b9613d8b3cb92f6b6",
+  "rule": "version <= \"2026.2.19-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-62f6-mrcj-v8h5"
+  ]
+}

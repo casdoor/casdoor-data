@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-8689-gm9g-jgr6",
+  "summary": "OpenClaw Voice-call Plivo V3 webhook replay key uses unsorted URL, allowing replay via query-parameter reordering",
+  "description": "Summary\n\nPlivo V3 signature verification canonicalized query ordering, but replay detection hashed the raw verification URL. Reordering query parameters preserved a valid signature while producing a fresh replay-cache key.\n\nImpact\n\nAn attacker who captured one valid signed Plivo V3 webhook could replay the same event by permuting query parameters and trigger duplicate voice-call processing.\n\nAffected Component\n\nextensions/voice-call/src/webhook-security.ts\n\nFixed Versions\n\n- Affected: <= 2026.3.24\n- Patched: >= 2026.3.28\n- Latest stable 2026.3.28 contains the fix.\n\nFix\n\nFixed by commit 85777e726c (Voice Call: canonicalize Plivo V3 replay key).",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Fixed by commit 85777e726c (Voice Call: canonicalize Plivo V3 replay key).",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-8689-gm9g-jgr6"
+  ]
+}

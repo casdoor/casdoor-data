@@ -1,0 +1,10 @@
+{
+  "name": "mcp sse",
+  "code": "mcp server security tips",
+  "summary": "Authentication and API abuse risks require attention in MCP server",
+  "description": "The MCP server requires attention to authentication and interface abuse risks.\nEnsure the server is properly configured to prevent unauthorized access and API misuse.",
+  "severity": "LOW",
+  "suggestion": "1. It is recommended to only expose the MCP server locally.\n2. Implement strict authentication mechanisms.\n3. Regularly review and update server configurations to mitigate potential risks.",
+  "rule": "is_internal==\"true\"",
+  "references": []
+}

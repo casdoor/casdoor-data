@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-f693-58pc-2gfr",
+  "summary": "OpenClaw Telegram legacy allowFrom migration fans default-account trust into all named accounts",
+  "description": "Summary\nTelegram legacy allowFrom migration fans default-account trust into all named accounts\n\nCurrent Maintainer Triage\n- Status: open\n- Normalized severity: low\n- Assessment: Shipped v2026.3.28 Telegram migration fans legacy default-account allowFrom trust into named accounts, which is an in-scope auth-boundary bug and low fits.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - d8c68c8d4265ea6fa5e8c5e056534c351bddef37 — 2026-03-31T12:51:38+01:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-f693-58pc-2gfr"
+  ]
+}

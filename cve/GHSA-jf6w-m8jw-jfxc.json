@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-jf6w-m8jw-jfxc",
+  "summary": "OpenClaw Write-scoped callers could reach admin-only session reset logic through `agent`",
+  "description": "Summary\nIn affected versions of openclaw, a gateway caller with operator.write could issue agent requests containing /new or /reset and reach the same reset path used by the admin-only sessions.reset RPC.\n\nImpact\nOn gateways where a caller is intentionally granted operator.write but not operator.admin, that caller could reset targeted conversation state through agent slash commands. This crosses the documented method-scope boundary between write-scoped messaging and admin-only session mutation.\n\nAffected Packages and Versions\n- Package: openclaw (npm)\n- Affected versions: <= 2026.3.8\n- Fixed in: 2026.3.11\n\nTechnical Details\nScope checks were enforced only on the outer RPC method. The agent slash-command path reused admin-only reset logic internally, so a write-scoped caller could reach session-reset mutation without holding operator.admin.\n\nFix\nOpenClaw no longer routes conversation /new and /reset through the admin-only sessions.reset entry point. Reset logic now lives in a shared service, while sessions.reset remains admin-only. The fix shipped in openclaw@2026.3.11.\n\nWorkarounds\nUpgrade to 2026.3.11 or later.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to 2026.3.11 or later. OpenClaw no longer routes conversation /new and /reset through the admin-only sessions.reset entry point. Reset logic now lives in a shared service, while sessions.reset remains admin-only. The fix shipped in openclaw@2026.3.11.",
+  "rule": "version <= \"2026.3.8\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-jf6w-m8jw-jfxc"
+  ]
+}

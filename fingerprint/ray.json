@@ -1,0 +1,22 @@
+{
+  "name": "ray",
+  "description": "An open-source framework for scaling AI and Python applications, providing a unified approach to distributed computing and machine learning workloads.",
+  "severity": "info",
+  "product": "dashboard",
+  "vendor": "ray",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/api/cluster_status",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "Got cluster status"
+      },
+      {
+        "pos": "icon",
+        "value": "463802404"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

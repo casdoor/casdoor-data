@@ -1,0 +1,18 @@
+{
+  "name": "clickhouse",
+  "description": "A high-performance open-source columnar database suited for real-time analytical processing.",
+  "severity": "info",
+  "product": "clickhouse",
+  "vendor": "clickhouse",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "header",
+        "value": "x-clickhouse-summary"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

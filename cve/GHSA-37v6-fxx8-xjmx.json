@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-37v6-fxx8-xjmx",
+  "summary": "OpenClaw Telnyx Webhook Replay Detection Bypass via Base64 Signature Re-encoding",
+  "description": "Summary\nTelnyx Webhook Replay Detection Bypass via Base64 Signature Re-encoding\n\nCurrent Maintainer Triage\n- Status: narrow\n- Normalized severity: low\n- Assessment: Shipped v2026.3.28 replay hashing treated equivalent Telnyx Base64/Base64URL signatures as distinct requests, but signature verification still held, so lower to low.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - ad77666054651c1fd77b1dc60fd6a8db6600a29a — 2026-03-30T20:01:43+01:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-37v6-fxx8-xjmx"
+  ]
+}

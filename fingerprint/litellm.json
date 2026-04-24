@@ -1,0 +1,31 @@
+{
+  "name": "LiteLLM",
+  "description": "An open-source API proxy supporting 100+ LLM models, providing OpenAI-compatible format APIs.",
+  "severity": "info",
+  "product": "LiteLLM",
+  "vendor": "LiteLLM",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "LiteLLM API"
+      },
+      {
+        "pos": "body",
+        "value": "Proxy Server to call 100+ LLMs in the OpenAI format"
+      },
+      {
+        "pos": "body",
+        "value": "LiteLLM Admin Panel on /ui"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/openapi.json",
+    "part": "body",
+    "regex": "\"version\":\"([0-9]+\\.[0-9]+\\.[0-9]+)\""
+  }
+}

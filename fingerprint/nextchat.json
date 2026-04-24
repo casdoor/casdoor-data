@@ -1,0 +1,18 @@
+{
+  "name": "nextchat",
+  "description": "",
+  "severity": "info",
+  "product": "nextchat",
+  "vendor": "nextchat",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>NextChat</title>"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

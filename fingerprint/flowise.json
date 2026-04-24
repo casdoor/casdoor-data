@@ -1,0 +1,23 @@
+{
+  "name": "flowise",
+  "description": "Flowise is an open-source low-code platform for building AI agents and LLM-powered chatflows with a visual drag-and-drop interface.",
+  "severity": "info",
+  "product": "flowise",
+  "vendor": "flowiseai",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>Flowise</title>"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/api/v1/version",
+    "part": "body",
+    "regex": "\"version\"\\s*:\\s*\"(\\d+\\.\\d+\\.?\\d*?)\""
+  }
+}

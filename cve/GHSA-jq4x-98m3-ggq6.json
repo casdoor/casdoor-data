@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-jq4x-98m3-ggq6",
+  "summary": "OpenClaw ZDI-CAN-29312: OpenClaw Canvas Path Traversal Information Disclosure Vulnerability",
+  "description": "ZDI-CAN-29312: OpenClaw Canvas Path Traversal Information Disclosure Vulnerability\n\n-- CVSS -----------------------------------------\n\n6.5: AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N\n\n-- ABSTRACT -------------------------------------\n\nTrend Micro's Zero Day Initiative has identified a vulnerability affecting the following products:\nOpenClaw - OpenClaw\n\n-- VULNERABILITY DETAILS ------------------------\n* Version tested: openclaw 2026.2.17\n* Platform tested: macOS 26.3\n\n---\n\nAnalysis\n\nDescription\n\nThe OpenClaw gateway's canvas tool accepts an a2ui_push action with a jsonlPath parameter that specifies a filesystem path to read. The gateway reads this file using fs.readFile() with no path validation, canonicalization, or directory restriction. An authenticated attacker can supply an arbitrary absolute or relative path to read any file accessible to the gateway process.\n\nThe file contents are forwarded to the connected node client via the canvas.a2ui.pushJSONL WebSocket command. The gateway itself returns { ok: true } to the HTTP caller, confirming the file was read and transmitted.\n\nRoot Cause\n\nIn src/agents/tools/canvas-tool.ts, the a2ui_push action handler reads a file from disk without any path restrictions:\n\n``typescript\ncase \"a2ui_push\": {\n  const jsonl =\n    typeof params.jsonl === \"string\" && params.jsonl.trim()\n      ? params.jsonl\n      : typeof params.jsonlPath === \"string\" && params.jsonlPath.trim()\n        ? await fs.readFile(params.jsonlPath.trim(), \"utf8\")  // <-- NO PATH VALIDATION\n        : \"\";\n  if (!jsonl.trim()) {\n    throw new Error(\"jsonl or jsonlPath required\");\n  }\n  await invoke(\"canvas.a2ui.pushJSONL\", { jsonl });\n  return jsonResult({ ok: true });\n}\n`\n\nThe jsonlPath parameter is passed directly to fs.readFile() after only a .trim() call. There is:\n- No allowlist of permitted directories\n- No canonicalization (path.resolve / realpath)\n- No check against directory traversal sequences (..)\n- No restriction to .jsonl file extensions\n\nAttack Scenario\n\nProm...",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.21 or later. Commit(s) - 39816e61b0c4347a83c9b76bc8883190cfe5a3c9",
+  "rule": "version <= \"2026.2.19-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-jq4x-98m3-ggq6"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-rvvf-6vh3-9j43",
+  "summary": "OpenClaw Discord Slash Commands Bypass Group DM Channel Allowlist",
+  "description": "Summary\nDiscord Slash Commands Bypass Group DM Channel Allowlist\n\nCurrent Maintainer Triage\n- Status: narrow\n- Normalized severity: low\n- Assessment: v2026.3.28 native Discord slash and autocomplete paths still skip the group-DM allowlist, but impact is limited to already-authorized Discord users bypassing a channel restriction rather than crossing a stronger trust boundary.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - 8fdb19676ab44cf85d47ee13c578195f2e527591 — 2026-03-30T11:17:36-06:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-rvvf-6vh3-9j43"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-89r3-6x4j-v7wf",
+  "summary": "OpenClaw Voice-call Plivo replay mutates in-process callback origin before replay rejection",
+  "description": "Summary\nVoice-call Plivo replay mutates in-process callback origin before replay rejection\n\nCurrent Maintainer Triage\n- Status: narrow\n- Normalized severity: low\n- Assessment: v2026.3.28 can still mutate Plivo callback origin before replay rejection, but this needs a captured valid callback for a live call so medium is overstated.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - efe9183f9d2fd5e01c8068fa01f4a07a58a63c0b — 2026-03-31T19:50:35+09:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-89r3-6x4j-v7wf"
+  ]
+}

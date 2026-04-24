@@ -1,0 +1,22 @@
+{
+  "name": "qanything",
+  "description": "An open-source enterprise-grade local knowledge base QA system developed by NetEase Youdao, supporting local queries across multiple data formats and databases.",
+  "severity": "info",
+  "product": "qanything",
+  "vendor": "netease-youdao",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/qanything",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>QAnything</title>"
+      },
+      {
+        "pos": "body",
+        "value": "<title>Application QAnything cannot handle your request</title>"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

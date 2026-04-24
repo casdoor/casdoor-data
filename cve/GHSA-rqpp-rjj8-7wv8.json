@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-rqpp-rjj8-7wv8",
+  "summary": "OpenClaw WebSocket shared-auth connections could self-declare elevated scopes",
+  "description": "Summary\n\nA logic flaw in the OpenClaw gateway WebSocket connect path allowed certain device-less shared-token or password-authenticated backend connections to keep client-declared scopes without server-side binding. A shared-authenticated client could present elevated scopes such as operator.admin even though those scopes were not tied to a device identity or an explicitly trusted Control UI path.\n\nImpact\n\nThis crossed the intended authorization boundary and could let a shared-secret-authenticated backend client perform admin-only gateway operations.\n\nAffected versions\n\nopenclaw <= 2026.3.11\n\nPatch\n\nFixed in openclaw 2026.3.12. The gateway now clears unbound scopes for non-Control-UI shared-auth connections, and regression tests cover the device-less shared-auth path.",
+  "severity": "CRITICAL",
+  "suggestion": "Upgrade openclaw to 2026.3.12 or later.",
+  "rule": "version <= \"2026.3.11\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-rqpp-rjj8-7wv8"
+  ]
+}

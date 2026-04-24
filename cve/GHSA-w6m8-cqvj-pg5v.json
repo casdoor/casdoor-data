@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-w6m8-cqvj-pg5v",
+  "summary": "OpenClaw Incomplete Fix for CVE-2026-32011: Feishu Webhook Pre-Auth Body Parsing DoS (Slow-Body / Slowloris Variant)",
+  "description": "> Fixed in OpenClaw 2026.3.24, the current shipping release.\n\nAdvisory Details\n\nTitle: Incomplete Fix for CVE-2026-32011: Feishu Webhook Pre-Auth Body Parsing DoS (Slow-Body / Slowloris Variant)\n\nDescription:\n\nSummary\n\nThe patch for CVE-2026-32011 tightened pre-auth body parsing limits (from 1MB/30s to 64KB/5s) across several webhook handlers. However, the Feishu extension's webhook handler was not included in the patch and still accepts request bodies with the old permissive limits (1MB body, 30-second timeout) before verifying the webhook signature. An unauthenticated attacker can exhaust server connection resources by sending concurrent slow HTTP POST requests to the Feishu webhook endpoint.\n\nDetails\n\nIn extensions/feishu/src/monitor.ts, the webhook HTTP handler uses installRequestBodyLimitGuard with permissive limits at lines 276-278:\n\n``typescript\nconst FEISHU_WEBHOOK_MAX_BODY_BYTES = 1024 * 1024;    // 1MB (line 26)\nconst FEISHU_WEBHOOK_BODY_TIMEOUT_MS = 30_000;         // 30s (line 27)\n\n// ... in monitorWebhook(), line 276-278:\nconst guard = installRequestBodyLimitGuard(req, res, {\n  maxBytes: FEISHU_WEBHOOK_MAX_BODY_BYTES,    // 1MB\n  timeoutMs: FEISHU_WEBHOOK_BODY_TIMEOUT_MS,  // 30s\n  responseFormat: \"text\",\n});\n`\n\nThe body guard is installed at line 276 before the request reaches the Lark SDK's adaptDefault webhook handler (line 284), which performs signature verification. This means:\n\n1. Any unauthenticated HTTP POST is accepted\n2. The server waits up to 30 seconds for the body to arrive\n3. Each connection can buffer up to 1MB\n4. Authentication only happens after the body is fully read\n\nThe patched handlers (Mattermost, MSTeams, Google Chat, etc.) now use tight pre-auth limits:\n`typescript\nconst PREAUTH_MAX_BODY_BYTES = 64 * 1024;     // 64KB\nconst PREAUTH_BODY_TIMEOUT_MS = 5_000;         // 5s\n`\n\nThe Feishu extension was missed because it resides in extensions/feishu/ (a plugin workspace) rather than in the core src/ directory.\n\nAttack chain:\n`\n[Attacke...",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.24 or later.",
+  "rule": "version <= \"2026.2.22\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-w6m8-cqvj-pg5v"
+  ]
+}

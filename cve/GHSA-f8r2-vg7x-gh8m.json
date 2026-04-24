@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-f8r2-vg7x-gh8m",
+  "summary": "OpenClaw Exec approval allowlist patterns overmatched on POSIX paths",
+  "description": "Summary\n\nmatchesExecAllowlistPattern normalized patterns and targets with lowercasing and compiled glob matching too broadly on POSIX. In addition, the ? wildcard could match /, which allowed matches to cross path segments.\n\nImpact\n\nThese matching rules could overmatch allowlist entries and permit commands or executable paths that an operator did not intend to approve.\n\nAffected versions\n\nopenclaw <= 2026.3.8\n\nPatch\n\nFixed in openclaw 2026.3.11 and included in later releases such as 2026.3.12. Exec allowlist matching now respects the intended path semantics, and regression tests cover the POSIX case-folding and slash-crossing cases.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to 2026.3.11 or later.",
+  "rule": "version <= \"2026.3.8\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-f8r2-vg7x-gh8m"
+  ]
+}

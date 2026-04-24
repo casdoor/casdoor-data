@@ -1,0 +1,18 @@
+{
+  "name": "triton-inference-server",
+  "description": "Triton Inference Server provides optimized cloud and edge inference solutions.",
+  "severity": "info",
+  "product": "triton-inference-server",
+  "vendor": "NVIDIA",
+  "httpInfo": {
+    "method": "POST",
+    "path": "/v2/repository/models/simple/load",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "{\"error\":\""
+      }
+    ]
+  },
+  "versionInfo": {}
+}

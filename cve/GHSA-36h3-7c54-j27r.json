@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-36h3-7c54-j27r",
+  "summary": "OpenClaw Browser trace/download path symlink escape in temp output handling",
+  "description": "Summary\nBrowser trace/download output path handling allowed symlink-root and symlink-parent escapes from the managed temp root.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.2.24\n- Affected versions: <= 2026.2.24\n- Planned patched release: 2026.2.25\n\nImpact\nAn attacker with relevant local foothold and ability to influence output paths could route writes outside the intended temp root via symlink traversal, leading to arbitrary file overwrite.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.25 or later. Commit(s) - 496a76c03ba85e15ea715e5a583e498ae04d36e3",
+  "rule": "version <= \"2026.2.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-36h3-7c54-j27r"
+  ]
+}

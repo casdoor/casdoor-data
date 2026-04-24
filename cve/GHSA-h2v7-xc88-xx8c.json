@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-h2v7-xc88-xx8c",
+  "summary": "OpenClaw `/phone arm`/`/phone disarm` Bypasses `operator.admin` Scope Check for External Channels ",
+  "description": "Summary\n/phone arm//phone disarm Bypasses operator.admin Scope Check for External Channels\n\nCurrent Maintainer Triage\n- Status: open\n- Normalized severity: medium\n- Assessment: Maintainers accepted this issue, fixed it in aa66ae1fc797d3298cc409ed2c5da69a89950a45 on 2026-03-27, and that fix shipped in v2026.3.28, so normalize it as a fixed released draft rather than a close-by-trust-model call.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.24\n- Patched versions: >= 2026.3.28\n- First stable tag containing the fix: v2026.3.28",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Commit(s) - aa66ae1fc797d3298cc409ed2c5da69a89950a45 — 2026-03-27T20:35:42Z",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-h2v7-xc88-xx8c"
+  ]
+}

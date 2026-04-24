@@ -1,0 +1,10 @@
+{
+  "name": "Xinference",
+  "code": "Xinference Deployment Security Notice",
+  "summary": "Exposing Xinference externally may lead to computational power theft and data resource misuse",
+  "description": "Exposing Xinference externally may lead to computational power theft and data resource misuse",
+  "severity": "LOW",
+  "suggestion": "It is recommended to only expose Xinference locally",
+  "rule": "is_internal==\"true\"",
+  "references": []
+}

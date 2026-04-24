@@ -1,0 +1,23 @@
+{
+  "name": "ollama",
+  "description": "An open-source tool that allows running large language models locally, ensuring data privacy and control.",
+  "severity": "info",
+  "product": "ollama",
+  "vendor": "ollama",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "Ollama is running"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/api/version",
+    "part": "body",
+    "regex": "{\"version\":\"(\\d+\\.\\d+\\.?\\d+?)\"}"
+  }
+}

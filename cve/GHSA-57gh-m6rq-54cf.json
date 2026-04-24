@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-57gh-m6rq-54cf",
+  "summary": "OpenClaw Media Local Roots Self-Whitelisting in <code>appendLocalMediaParentRoots</code> Allows Model-Initiated Arbitrary Host File Read and Credential Exfiltration",
+  "description": "Summary\nMedia Local Roots Self-Whitelisting in <code>appendLocalMediaParentRoots</code> Allows Model-Initiated Arbitrary Host File Read and Credential Exfiltration\n\nCurrent Maintainer Triage\n- Status: narrow\n- Normalized severity: medium\n- Assessment: v2026.3.28 still self-whitelists media parent dirs in src/media/local-roots.ts, but only after config already permits tool-fs root expansion, so the impact is narrower than the default-critical framing.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - 1ca4261d7e055d0be141ed79ebb1365d0fbc7364 — 2026-03-30T17:15:03+01:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-57gh-m6rq-54cf"
+  ]
+}

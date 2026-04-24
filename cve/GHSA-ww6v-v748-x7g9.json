@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-ww6v-v748-x7g9",
+  "summary": "OpenClaw sandbox network isolation bypass via docker.network=container:<id>",
+  "description": "Summary\nIn openclaw@2026.2.23, sandbox network hardening blocks network=host but still allows network=container:<id>.\n\nThis can let a sandbox join another container's network namespace and reach services available in that namespace.\n\nPreconditions and Trust Model Context\nThis issue requires a trusted-operator configuration path (for example setting agents.defaults.sandbox.docker.network in gateway config). It is not an unauthenticated remote exploit by itself.\n\nDetails\nCurrent validation blocks only host, while forwarding other values to Docker create args:\n\n- validateNetworkMode(network) only rejects values in BLOCKED_NETWORK_MODES = {\"host\"}.\n- buildSandboxCreateArgs(...) validates then forwards cfg.network into --network.\n- Browser sandbox helper also treats container: as an accepted mode in network preparation.\n\nEffective behavior:\n\n- host -> blocked\n- container:<id> -> accepted and forwarded\n\nImpact\nType: sandbox network isolation hardening bypass.\n\nPractical impact depends on deployment:\n\n- Requires ability to influence trusted sandbox network config.\n- Higher impact when a target container exposes privileged/internal network reachability.\n\nRemediation\nBlock namespace-join style network modes (including container:<id>) for sandbox containers, and keep strict allowlisting for safe network modes.\n\nPatch Status\nFixed on main in commit 14b6eea6e:\nhttps://github.com/openclaw/openclaw/commit/14b6eea6e\n\nFollow-up refactor/cleanup (no policy rollback):\nhttps://github.com/openclaw/openclaw/commit/5552f9073",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to >= 2026.2.24 or later.",
+  "rule": "version <= \"2026.2.23\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-ww6v-v748-x7g9"
+  ]
+}

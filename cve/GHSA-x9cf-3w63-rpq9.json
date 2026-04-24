@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-x9cf-3w63-rpq9",
+  "summary": "OpenClaw Sensitive file disclosure via stageSandboxMedia",
+  "description": "Summary\nWhen iMessage remote attachment fetching is enabled (channels.imessage.remoteHost), stageSandboxMedia accepted arbitrary absolute paths and used SCP to copy them into local staging.\n\nIf a non-attachment path reaches this flow, files outside expected iMessage attachment directories on the remote host can be staged.\n\nAffected Packages / Versions\n- Package: openclaw\n- Affected: up to and including 2026.2.17 (latest npm version as of February 19, 2026)\n- Fixed: pending next release with remote attachment path validation\n\nImpact\nConfidentiality impact. An attacker who can influence inbound attachment path metadata may disclose files readable by the OpenClaw process on the configured remote host.\n\nAttack Preconditions\n1. iMessage attachments enabled (channels.imessage.includeAttachments=true), and\n2. remote attachment mode active (channels.imessage.remoteHost configured or auto-detected), and\n3. attacker can inject/tamper with attachment path metadata.\n\nGiven these preconditions, this advisory is assessed as medium severity.\n\nMitigation\n- Upgrade to the first release that includes remote attachment path validation.\n- If remote attachments are not required, disable iMessage attachment ingestion.\n- Run OpenClaw under least privilege on the remote host.\n\nThanks @zpbrent for reporting.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.19 or later. Commit(s) - 1316e5740382926e45a42097b4bfe0aef7d63e8e - Upgrade to the first release that includes remote attachment path validation. - If remote attachments are not required, disable iMessage attachment ingestion. - Run OpenClaw under least privilege on the remote host.",
+  "rule": "version <= \"2026.2.17\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-x9cf-3w63-rpq9"
+  ]
+}

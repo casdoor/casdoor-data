@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-2j9j-gf59-p4p5",
+  "summary": "OpenClaw iOS deep link (openclaw://agent) can trigger gateway agent requests without local confirmation",
+  "description": "Summary\nA crafted openclaw://agent deep link could cause OpenClaw iOS to forward an agent.request event to a connected Gateway without local confirmation on iOS.\n\nAffected Packages / Versions\n- Advisory package metadata: openclaw (swift ecosystem).\n- Latest published npm openclaw at triage time: 2026.2.22-2.\n- Affected practical surface: internal preview iOS builds only (not publicly distributed).\n- Structured advisory range is set to <= 2026.2.22-2 and patched version is pre-set to 2026.2.23 and is now public.\n\nImpact\n- External deep-link trigger could cause unintended agent action initiation in an already-connected iOS node context.\n- This is a user-interaction deep-link abuse issue, not unauthenticated server takeover.\n- Severity is set to Low because iOS distribution is internal preview/super-alpha and not public/TestFlight release.\n\nRemediation\nThe iOS deep-link path now requires local confirmation unless a trusted deep-link key is provided, and unkeyed deep links have delivery-routing fields stripped before submission.",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to 2026.2.23 or later. Commit(s) - ff4e6ca0d942ef52330dcbe116321ae4fed21749",
+  "rule": "version <= \"2026.2.22-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-2j9j-gf59-p4p5"
+  ]
+}

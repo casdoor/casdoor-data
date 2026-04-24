@@ -1,0 +1,10 @@
+{
+  "name": "llmstudio",
+  "code": "llmstudio-deployment-security-advisory",
+  "summary": "Exposing llmstudio externally may lead to compute resource theft and data abuse",
+  "description": "Exposing llmstudio externally may lead to compute resource theft and data abuse",
+  "severity": "LOW",
+  "suggestion": "It is recommended to expose llmstudio API only locally",
+  "rule": "is_internal==\"true\"",
+  "references": []
+}

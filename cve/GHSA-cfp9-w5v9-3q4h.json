@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-cfp9-w5v9-3q4h",
+  "summary": "OpenClaw Image tool bypassed tools.fs.workspaceOnly and could read mounted files outside the workspace",
+  "description": "Summary\nThe image tool did not fully honor the tools.fs.workspaceOnly filesystem boundary. In affected releases, image-path resolution could still traverse sandbox bridge mounts outside the workspace and read files from mounted directories that the other file tools would reject.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Affected: < 2026.3.2\n- Fixed: >= 2026.3.2\n- Latest released tags checked: v2026.3.23 (ccfeecb6887cd97937e33a71877ad512741e82b2) and v2026.3.23-2 (630f1479c44f78484dfa21bb407cbe6f171dac87)\n- Latest published npm version checked: 2026.3.23-2\n\nRelease Status\nThe complete fix shipped in v2026.3.2 and remains present in v2026.3.23 and v2026.3.23-2.\n\nCode-Level Confirmation\n- src/agents/openclaw-tools.ts now passes fsPolicy into createImageTool, so the image tool receives the same workspace-only policy input as the other filesystem tools.\n- src/agents/tools/image-tool.ts, src/agents/tools/media-tool-shared.ts, and src/agents/sandbox-media-paths.ts now restrict local roots and sandbox-bridge resolution to the workspace when tools.fs.workspaceOnly is enabled.\n\nThanks @YLChen-007 for reporting.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.2 or later. Commit(s) - dd9d9c1c609dcb4579f9e57bd7b5c879d0146b53 - 14baadda2c456f3cf749f1f97e8678746a34a7f4",
+  "rule": "version < \"2026.3.2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-cfp9-w5v9-3q4h"
+  ]
+}

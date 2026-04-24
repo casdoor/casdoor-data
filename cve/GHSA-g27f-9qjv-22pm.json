@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-g27f-9qjv-22pm",
+  "summary": "OpenClaw OpenClaw log poisoning (indirect prompt injection) via WebSocket headers",
+  "description": "Summary\nIn openclaw versions prior to 2026.2.13, OpenClaw logged certain WebSocket request headers (including Origin and User-Agent) without neutralization or length limits on the \"closed before connect\" path.\n\nIf an unauthenticated client can reach the gateway and send crafted header values, those values may be written into core logs. Under workflows where logs are later read or interpreted by an LLM (for example via AI-assisted debugging), this can increase the risk of indirect prompt injection (log poisoning).\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Affected: <= 2026.2.12\n- Fixed: >= 2026.2.13\n\nDetails\n- Component: src/gateway/server/ws-connection.ts\n- Trigger: WebSocket connection closes before completing the connect/handshake; header values are included in the log message and structured context.\n\nImpact\nThis issue is primarily an indirect prompt injection risk and depends on downstream log consumption behavior. If you do not feed logs into an LLM or other automation, impact is limited.\n\nFix\nHeader values written to gateway logs are now sanitized and truncated (including removal of control/format characters and length limiting).\n- Fix commits: d637a263505448bf4505b85535babbfaacedbaac, e84318e4bcdc948d92e57fda1eb763a65e1774f0 (PR 15592)\n\nWorkarounds\n- Upgrade to openclaw@2026.2.13 or later.\n- Treat logs as untrusted input when using AI-assisted debugging (sanitize/escape, and do not auto-execute instructions derived from logs).\n- Restrict gateway network exposure; apply reverse-proxy limits on header size where applicable.\n\nThanks @pkerkhofs for reporting.",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to 2026.2.13 or later. Header values written to gateway logs are now sanitized and truncated (including removal of control/format characters and length limiting). - Fix commits: d637a263505448bf4505b85535babbfaacedbaac, e84318e4bcdc948d92e57fda1eb763a65e1774f0 (PR #15592)",
+  "rule": "version <= \"2026.2.12\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-g27f-9qjv-22pm"
+  ]
+}

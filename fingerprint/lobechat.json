@@ -1,0 +1,18 @@
+{
+  "name": "LobeChat",
+  "description": "",
+  "severity": "info",
+  "product": "LobeChat",
+  "vendor": "LobeChat",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>LobeChat</title>"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

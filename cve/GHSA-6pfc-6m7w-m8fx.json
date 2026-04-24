@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-6pfc-6m7w-m8fx",
+  "summary": "OpenClaw Gateway exec allowlist allow-always bypass via unregistered /usr/bin/script wrapper",
+  "description": "Summary\n\nAllow-always persistence did not unwrap /usr/bin/script and similar wrappers to the actual executed target before storing trust decisions.\n\nImpact\n\nA user approval for one wrapped command could persist trust for a wrapper binary that later executed a different underlying program.\n\nAffected Component\n\nsrc/infra/dispatch-wrapper-resolution.ts, src/infra/exec-wrapper-resolution.ts\n\nFixed Versions\n\n- Affected: <= 2026.3.24\n- Patched: >= 2026.3.28\n- Latest stable 2026.3.28 contains the fix.\n\nFix\n\nFixed by commit 83da3cfe31 (infra: unwrap script wrapper approval targets).",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Fixed by commit 83da3cfe31 (infra: unwrap script wrapper approval targets).",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-6pfc-6m7w-m8fx"
+  ]
+}

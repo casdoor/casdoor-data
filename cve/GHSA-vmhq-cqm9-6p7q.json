@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-vmhq-cqm9-6p7q",
+  "summary": "OpenClaw `browser.request` let `operator.write` persist admin-only browser profile changes",
+  "description": "Summary\n\nAn authorization mismatch in the gateway let an authenticated caller with only operator.write use browser.request to reach browser profile management routes that persist configuration to disk. In practice, this exposed an admin-only configuration write primitive through /profiles/create.\n\nImpact\n\nA write-scoped operator could create or modify browser profiles and store attacker-chosen remote CDP endpoints without holding operator.admin.\n\nAffected versions\n\nopenclaw <= 2026.3.8\n\nPatch\n\nFixed in openclaw 2026.3.11 and included in later releases such as 2026.3.12. Browser profile creation now requires the correct admin boundary, and regression tests cover the write-vs-admin authorization split.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to 2026.3.11 or later.",
+  "rule": "version <= \"2026.3.8\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-vmhq-cqm9-6p7q"
+  ]
+}

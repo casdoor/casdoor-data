@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-qpjj-47vm-64pj",
+  "summary": "OpenClaw missing authentication for local browser-control endpoints",
+  "description": "Summary\n\nThe local browser-control HTTP interface allowed sensitive browser actions without mandatory authentication in some configurations. This could allow unauthorized local callers to invoke privileged browser-control operations against managed sessions.\n\nAffected Components\n\n- src/browser/routes/agent.act.ts\n- src/browser/pw-tools-core.interactions.ts\n- Browser control HTTP route: /agent/act\n\nAffected Versions\n\n- >= 2026.1.5, <= 2026.2.9\n\nPatched Versions\n\n- >= 2026.2.12\n\nTechnical Details (sanitized)\n\nThe browser-control route accepted high-privilege action requests that can execute browser-context logic. Authentication was not consistently enforced for these HTTP routes when auth was not configured. Given the route is loopback-bound, exposure is primarily local-process and local-proxy boundary related.\n\nImpact\n\nPotential unauthorized access to managed browser session capabilities, including access to sensitive in-session data and privileged browser actions.\n\nRemediation\n\n- Enforce gateway auth on browser-control HTTP routes (token/password).\n- Auto-generate and persist a strong gateway.auth.token when browser control is enabled without existing auth.\n- Add security-audit detection for browser control without auth.\n- Add regression tests for auth enforcement and audit coverage.\n\nCredit\n\nThanks @tcusolle for the responsible report.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.2.12 or later. Commit(s) - 9230a2ae14307740a13ada7afd6dcfab34e0287f",
+  "rule": "version <= \"2026.2.9\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-qpjj-47vm-64pj"
+  ]
+}

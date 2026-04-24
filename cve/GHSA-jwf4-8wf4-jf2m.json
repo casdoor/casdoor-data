@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-jwf4-8wf4-jf2m",
+  "summary": "OpenClaw BlueBubbles (optional plugin) pairing/allowlist mismatch when allowFrom is empty",
+  "description": "Summary\nBlueBubbles is an optional OpenClaw channel plugin. A configuration-sensitive access-control mismatch allowed DM senders to be treated as authorized when dmPolicy was pairing or allowlist and allowFrom was empty/unset.\n\nSeverity Rationale (Medium)\nSeverity is set to medium because:\n- this affects an optional plugin, not core messaging surfaces;\n- many deployments use owner-controlled/private BlueBubbles identities with limited external reachability;\n- practical exploitability depends on an untrusted sender being able to reach that specific BlueBubbles account identifier.\n\nIn typical personal/self-hosted BlueBubbles setups, the mapped Apple identity is single-owner and not broadly reachable, so this is usually low practical risk.\n\nRisk is higher in deployments where the identifier is publicly reachable and/or agent tool permissions are broad.\n\nTechnical Details\n1. BlueBubbles DM policy defaults to pairing (dmPolicy ?? \"pairing\").\n2. Effective allowlist can be empty (effectiveAllowFrom).\n3. DM/reaction authorization called isAllowedBlueBubblesSender(...).\n4. That delegated to shared isAllowedParsedChatSender(...), which previously returned true for empty allowlists.\n5. Result: unknown senders could bypass intended pairing/allowlist gating when allowFrom was empty.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Vulnerable versions: <= 2026.2.21-2\n- Planned fixed version: 2026.2.22\n\nFix\nThe shared parsed-chat allowlist helper now fails closed on empty allowlists, restoring expected BlueBubbles DM gating behavior. BlueBubbles inbound gating was also refactored to use one shared DM/group decision helper for both message and reaction paths to reduce future drift.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to 2026.2.22 or later. The shared parsed-chat allowlist helper now fails closed on empty allowlists, restoring expected BlueBubbles DM gating behavior. BlueBubbles inbound gating was also refactored to use one shared DM/group decision helper for both message and reaction paths to reduce future drift.",
+  "rule": "version <= \"2026.2.21-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-jwf4-8wf4-jf2m"
+  ]
+}

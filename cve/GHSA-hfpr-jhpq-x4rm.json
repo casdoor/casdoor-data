@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-hfpr-jhpq-x4rm",
+  "summary": "OpenClaw `operator.write` chat.send could reach admin-only config writes",
+  "description": "Summary\nA gateway client authenticated with operator.write could route /config set or /config unset through chat.send and reach persistent config mutation even though direct config RPC methods are admin-scoped.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published vulnerable version: 2026.3.2\n- Affected range: <= 2026.3.2\n- Patched in: 2026.3.7\n\nDetails\nBefore the fix, chat.send ran slash commands in an internal gateway-chat context with CommandAuthorized: true, and /config write paths only checked command authorization plus commands.config / channels.<provider>.configWrites gates. That allowed an authenticated operator.write gateway client to bridge into persistent config writes even though direct config.* RPC methods remain operator.admin scoped.\n\nThe fix keeps command functionality intact while restoring the intended scope boundary:\n- persistent /config set|unset writes routed through gateway chat.send now require operator.admin\n- read-only /config show remains available to normal write-scoped gateway clients\n- normal messaging-channel /config behavior remains unchanged\n\nImpact\nThis is a real authorization mismatch, but exploitability requires an already authenticated gateway client with operator.write, chat.send access, and /config command support enabled. Maintainer severity is set to medium because the bug is a scoped control-plane privilege mismatch rather than a broad unauthenticated or generic remote compromise. The main consequence is unintended persistent config mutation.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.7 or later. Commit(s) - 5f8f58ae25e2a78f31b06edcf26532d634ca554e",
+  "rule": "version <= \"2026.3.2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-hfpr-jhpq-x4rm"
+  ]
+}

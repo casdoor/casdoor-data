@@ -1,6 +1,6 @@
 {
   "name": "langchain",
-  "description": "A flexible open-source framework for building applications that leverage large language models with external data sources.",
+  "description": "A flexible open-source framework for building applications powered by large language models with external data sources.",
   "severity": "info",
   "product": "ChatLangChain",
   "vendor": "LangChain",
@@ -14,10 +14,5 @@
       }
     ]
   },
-  "versionInfo": {
-    "method": "",
-    "path": "",
-    "part": "",
-    "regex": ""
-  }
+  "versionInfo": {}
 }

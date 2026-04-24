@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-f7ww-2725-qvw2",
+  "summary": "OpenClaw Node system.run approval bypass via parent-symlink cwd rebind",
+  "description": "Summary\nFor host=node executions, approval context could be bypassed after approval-time by rebinding a writable parent symlink in cwd while preserving the visible cwd string.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Affected: <= 2026.2.25\n- Fixed: >= 2026.2.26 (planned next npm release)\n\nImpact\nA command approved for one filesystem location could execute from a different location if a mutable parent symlink changed between approval and execution.\n\nFix\n- Added immutable approval-time plan preparation (system.run.prepare) and systemRunPlanV2 canonical fields (argv, cwd, agentId, sessionKey).\n- Enforced canonical plan values through approval request storage and forwarding-time sanitization.\n- Rejected mutable parent-symlink path components during approval-plan building to block symlink rebind bypass.\n- Follow-up refactors centralized command catalogs and approval context/error handling to reduce future drift.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.26 or later. - Added immutable approval-time plan preparation (system.run.prepare) and systemRunPlanV2 canonical fields (argv, cwd, agentId, sessionKey). - Enforced canonical plan values through approval request storage and forwarding-time sanitization. - Rejected mutable parent-symlink path components during approval-plan building to block symlink rebind bypass.",
+  "rule": "version <= \"2026.2.25\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-f7ww-2725-qvw2"
+  ]
+}

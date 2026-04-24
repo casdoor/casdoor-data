@@ -1,10 +1,10 @@
 {
   "name": "OpenClaw",
   "code": "GHSA-vpj2-69hf-rppw",
-  "summary": "Summary When browser control started without explicit auth credentials, OpenClaw attempted to bootstrap auth automatically.",
-  "description": "Summary\n\nWhen browser control started without explicit auth credentials, OpenClaw attempted to bootstrap auth automatically. In\naffected versions, if that bootstrap step threw an error, startup could continue and expose browser-control routes without\nauthentication.\n\n\nImpact\n\nOn affected deployments, a local process (or a loopback-reachable SSRF path) could access browser-control routes, including\nevaluate-capable actions, without auth.\n\n\nFix\n\nStartup now fails closed: if bootstrap auth fails and no explicit token/password is configured, browser-control startup\naborts.\n\n\nAffected and Patched Versions\n\n- Affected: <= 2026.2.26\n\n- Patched: 2026.3.1",
+  "summary": "OpenClaw Browser control startup could continue unauthenticated after auth bootstrap failure",
+  "description": "Summary\nWhen browser control started without explicit auth credentials, OpenClaw attempted to bootstrap auth automatically. In affected versions, if that bootstrap step threw an error, startup could continue and expose browser-control routes without authentication.\n\nImpact\nOn affected deployments, a local process (or a loopback-reachable SSRF path) could access browser-control routes, including evaluate-capable actions, without auth.\n\nFix\nStartup now fails closed: if bootstrap auth fails and no explicit token/password is configured, browser-control startup aborts.\n\nAffected and Patched Versions\n- Affected: <= 2026.2.26\n- Patched: 2026.3.1",
   "severity": "MEDIUM",
-  "suggestion": "Upgrade openclaw to >= 2026.3.1 or later. Startup now fails closed: if bootstrap auth fails and no explicit",
+  "suggestion": "Upgrade openclaw to >= 2026.3.1 or later. Startup now fails closed: if bootstrap auth fails and no explicit token/password is configured, browser-control startup aborts.",
   "rule": "version <= \"2026.2.26\"",
   "references": [
     "https://github.com/openclaw/openclaw/security/advisories/GHSA-vpj2-69hf-rppw"

@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-fhvm-j76f-qmjv",
+  "summary": "OpenClaw Potential access-group authorization bypass if channel type lookup fails",
+  "description": "Summary\n\nWhen Telegram webhook mode is enabled without a configured webhook secret, OpenClaw may accept unauthenticated HTTP POST requests at the Telegram webhook endpoint and trust attacker-controlled update JSON. This can allow forged Telegram updates that spoof message.from.id / chat.id, potentially bypassing sender allowlists and executing privileged bot commands.\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n- Affected: <= 2026.1.30\n- Patched: >= 2026.2.1\n\nImpact\n\nAn attacker who can reach the webhook endpoint can forge Telegram updates and impersonate allowlisted/paired senders by spoofing fields in the webhook payload (for example message.from.id). Impact depends on enabled commands/tools and the deployment’s network exposure.\n\nMitigations / Workarounds\n\n- Configure a strong channels.telegram.webhookSecret and ensure your reverse proxy forwards the X-Telegram-Bot-Api-Secret-Token header unchanged.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >=2026.2.2 or later. Commit(s) - ca92597e1f9593236ad86810b66633144b69314d (config validation: webhookUrl requires webhookSecret) Defense-in-depth / supporting fixes: / Workarounds - Configure a strong channels.telegram.webhookSecret and ensure your reverse proxy forwards the X-Telegram-Bot-Api-Secret-Token header unchanged.",
+  "rule": "version <= \"2026.2.1\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-fhvm-j76f-qmjv"
+  ]
+}

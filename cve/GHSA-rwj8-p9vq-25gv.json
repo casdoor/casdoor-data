@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-rwj8-p9vq-25gv",
+  "summary": "OpenClaw LFI in BlueBubbles media path handling",
+  "description": "Summary\nThe BlueBubbles extension accepted attacker-controlled local filesystem paths via mediaPath and could read arbitrary local files from disk before sending them as media attachments.\n\nDetails\nWhen sendBlueBubblesMedia received a non-HTTP media source, the previous implementation resolved it to a local path and read it directly from disk. There was no required allowlist of safe directories, so values like /etc/passwd (or equivalent sensitive paths on other platforms) could be requested and exfiltrated.\n\nThe fix hardens local media loading by requiring explicit configured roots (channels.bluebubbles.mediaLocalRoots) and by enforcing canonical-path containment checks before reading local files. Paths outside allowed roots are rejected.\n\nFix PR: https://github.com/openclaw/openclaw/pull/16322\nFix commit: https://github.com/openclaw/openclaw/commit/71f357d9498cebb0efe016b0496d5fbe807539fc\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Affected: < v2026.2.14\n- Fixed: >= v2026.2.14 (planned)\n\nImpact\nAn attacker able to trigger BlueBubbles media sends could exfiltrate local files accessible to the OpenClaw process.\n\nRemediation\nUpgrade to a release that includes commit 71f357d9498cebb0efe016b0496d5fbe807539fc and configure channels.bluebubbles.mediaLocalRoots to explicit trusted directories.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >=v2026.2.14 or later.",
+  "rule": "version < \"v2026.2.14\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-rwj8-p9vq-25gv"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "dask",
+  "description": "An open-source framework for scaling AI and Python applications, providing a unified approach to distributed computing and machine learning workloads.",
+  "severity": "info",
+  "product": "dashboard",
+  "vendor": "dask",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/info/main/logs.html",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "Scheduler at"
+      },
+      {
+        "pos": "icon",
+        "value": "1034154531"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

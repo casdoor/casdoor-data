@@ -1,0 +1,18 @@
+{
+  "name": "fastchat-webui",
+  "description": "",
+  "severity": "info",
+  "product": "fastchat-webui",
+  "vendor": "lm-sys",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "\"title\":\"Chat with Open Large Language Models\""
+      }
+    ]
+  },
+  "versionInfo": {}
+}

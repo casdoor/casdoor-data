@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-jjw7-3vjf-fg5j",
+  "summary": "OpenClaw OpenClaw Nostr privateKey config redaction bypass leaks plaintext signing key via config.get",
+  "description": "Summary\nOpenClaw Nostr privateKey config redaction bypass leaks plaintext signing key via config.get\n\nCurrent Maintainer Triage\n- Status: open\n- Normalized severity: medium\n- Assessment: v2026.3.28 still models Nostr privateKey as plain string so config views can expose it, and the secret-schema fix is unreleased.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - 57700d716f660591fb6e09727f3ca8041fa48b9d — 2026-03-31T19:55:03+09:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-jjw7-3vjf-fg5j"
+  ]
+}

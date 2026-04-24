@@ -1,0 +1,18 @@
+{
+  "name": "ComfyUI-Custom-Scripts",
+  "description": "A collection of custom scripts and nodes that enhance the ComfyUI user interface and functionality.",
+  "severity": "info",
+  "product": "ComfyUI-Custom-Scripts",
+  "vendor": "comfyui",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/extensions",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "extensions/ComfyUI-Custom-Scripts/js"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

@@ -1,10 +1,10 @@
 {
   "name": "OpenClaw",
   "code": "GHSA-3fv3-6p2v-gxwj",
-  "summary": "Impact QQ Bot Extension: Missing SSRF Protection on All Media Fetch Paths.",
-  "description": "Impact\n\n\nQQ Bot Extension: Missing SSRF Protection on All Media Fetch Paths.\n\n\nQQ Bot media download paths were not consistently routed through the SSRF guard and allowlist policy.\n\n\nOpenClaw is a user-controlled local assistant. This advisory is scoped to the OpenClaw trust model and does not assume\na multi-tenant service boundary.\n\n\nAffected Packages / Versions\n\n\n- Package: openclaw (npm)\n\n- Affected versions: <= 2026.4.2\n\n- Patched versions: 2026.4.8\n\n\nFix\n\n\nThe issue was fixed on main and is available in the patched npm version listed above. The verified fixed tree is commit\nd7c3210cd6f5fdfdc1beff4c9541673e814354d5.\n\n\nVerification\n\n\nThe fix was re-checked against main before publication, including targeted regression tests for the affected security\nboundary.\n\n\nCredits\n\n\nThanks @adithyan-ak for reporting.",
+  "summary": "OpenClaw QQ Bot Extension: Missing SSRF Protection on All Media Fetch Paths",
+  "description": "Impact\n\nQQ Bot Extension: Missing SSRF Protection on All Media Fetch Paths.\n\nQQ Bot media download paths were not consistently routed through the SSRF guard and allowlist policy.\n\nOpenClaw is a user-controlled local assistant. This advisory is scoped to the OpenClaw trust model and does not assume a multi-tenant service boundary.\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n- Affected versions: <= 2026.4.2\n- Patched versions: 2026.4.8\n\nFix\n\nThe issue was fixed on main and is available in the patched npm version listed above. The verified fixed tree is commit d7c3210cd6f5fdfdc1beff4c9541673e814354d5.\n\nVerification\n\nThe fix was re-checked against main before publication, including targeted regression tests for the affected security boundary.\n\nCredits\n\nThanks @adithyan-ak for reporting.",
   "severity": "MEDIUM",
-  "suggestion": "Upgrade openclaw to 2026.4.8 or later. The issue was fixed on main and is available in the patched npm",
+  "suggestion": "Upgrade openclaw to 2026.4.8 or later. The issue was fixed on main and is available in the patched npm version listed above. The verified fixed tree is commit d7c3210cd6f5fdfdc1beff4c9541673e814354d5.",
   "rule": "version <= \"2026.4.2\"",
   "references": [
     "https://github.com/openclaw/openclaw/security/advisories/GHSA-3fv3-6p2v-gxwj"

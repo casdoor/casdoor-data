@@ -1,0 +1,10 @@
+{
+  "name": "ComfyUI-Custom-Scripts",
+  "code": "ComfyUI-Custom-Scripts local file read",
+  "summary": "Vulnerability in ComfyUI due to insecure custom script execution",
+  "description": "The vulnerability arises from the ability to execute arbitrary custom scripts within the ComfyUI environment. \nThis could allow attackers to run malicious code, potentially leading to data theft, system compromise, or unauthorized access.",
+  "severity": "CRITICAL",
+  "suggestion": "1. Disable custom script execution unless absolutely necessary.\n2. Implement strict validation and sanitization of any scripts that are allowed to run.\n3. Regularly update ComfyUI to the latest version to benefit from security patches.",
+  "rule": "version < \"1.2.3\"",
+  "references": []
+}

@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-5h2w-qmfp-ggp6",
+  "summary": "OpenClaw Gateway `operator.write` can reach admin-only persisted `verboseLevel` via `chat.send` `/verbose`",
+  "description": "Summary\n\nThe chat.send path let authorized write-scoped callers persist /verbose session overrides even though the same stored session mutation is admin-only through sessions.patch.\n\nImpact\n\nA write-scoped gateway caller could persist verbose output for later runs and expose more reasoning or tool output than the operator intended.\n\nAffected Component\n\nsrc/auto-reply/reply/directive-handling.impl.ts, src/gateway/sessions-patch.ts\n\nFixed Versions\n\n- Affected: <= 2026.3.24\n- Patched: >= 2026.3.28\n- Latest stable 2026.3.28 contains the fix.\n\nFix\n\nFixed by commit c603123528 (fix(gateway): require admin for persisted verbose defaults).",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Fixed by commit c603123528 (fix(gateway): require admin for persisted verbose defaults).",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-5h2w-qmfp-ggp6"
+  ]
+}

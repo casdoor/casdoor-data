@@ -1,0 +1,18 @@
+{
+  "name": "jupyter-notebook",
+  "description": "A backend component providing core services and APIs for Jupyter web applications such as Notebook and Lab.",
+  "severity": "info",
+  "product": "jupyter-notebook",
+  "vendor": "jupyter",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>Jupyter Notebook</title>"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-xf99-j42q-5w5p",
+  "summary": "OpenClaw Unbound interpreter and runtime commands could bypass node-host approval integrity",
+  "description": "Summary\nIn affected versions of openclaw, node-host system.run approvals could still execute rewritten local code for interpreter and runtime commands when OpenClaw could not bind exactly one concrete local file operand during approval planning.\n\nImpact\nDeployments using node-host system.run approval mode could approve a benign local script and then execute different local code if that script changed before execution. This can lead to unintended local code execution as the OpenClaw runtime user.\n\nAffected Packages and Versions\n- Package: openclaw (npm)\n- Affected versions: <= 2026.3.8\n- Fixed in: 2026.3.11\n\nTechnical Details\nThe approval flow treated some interpreter and runtime forms as approval-backed even when it could not honestly bind a single direct local script file. That left residual approval-integrity gaps for runtime forms outside the directly bound file set.\n\nFix\nOpenClaw now fails closed for approval-backed interpreter and runtime commands unless it can bind exactly one concrete local file operand, and it extends best-effort direct-file binding for additional runtime forms. The fix shipped in openclaw@2026.3.11.\n\nWorkarounds\nUpgrade to 2026.3.11 or later.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to 2026.3.11 or later. OpenClaw now fails closed for approval-backed interpreter and runtime commands unless it can bind exactly one concrete local file operand, and it extends best-effort direct-file binding for additional runtime forms. The fix shipped in openclaw@2026.3.11.",
+  "rule": "version <= \"2026.3.8\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-xf99-j42q-5w5p"
+  ]
+}

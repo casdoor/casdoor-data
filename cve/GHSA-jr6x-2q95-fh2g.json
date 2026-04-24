@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-jr6x-2q95-fh2g",
+  "summary": "OpenClaw Authorization mismatch allowed write-scope agent runs to reach owner-only tools",
+  "description": "Summary\nAn authorization mismatch allowed authenticated callers with operator.write access to invoke owner-only tool surfaces (gateway, cron) through agent runs in scoped-token deployments.\n\nImpact\nOn affected deployments, write-scoped callers could perform control-plane actions beyond intended write scope.\n\nFix\nOwner-only gating is now enforced consistently for owner-only tool surfaces during agent execution, and tool scope classification was tightened to remove the privilege mismatch.\n\nAffected and Patched Versions\n- Affected: <= 2026.2.26\n- Patched: 2026.3.1",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.3.1 or later. Owner-only gating is now enforced consistently for owner-only tool surfaces during agent execution, and tool scope classification was tightened to remove the privilege mismatch.",
+  "rule": "version <= \"2026.2.26\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-jr6x-2q95-fh2g"
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "name": "OpenClaw",
   "code": "GHSA-w76h-8m22-hpgh",
-  "summary": "Summary In OpenClaw MSTeams media download flows, redirect handling could bypass configured mediaAllowHosts checks in specific attachment paths.",
-  "description": "Summary\n\nIn OpenClaw MSTeams media download flows, redirect handling could bypass configured mediaAllowHosts checks in specific\nattachment paths. Redirect chains were not consistently constrained to allowlisted targets before accepting fetched content.\n\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n\n- Affected versions: <= 2026.2.21-2 (latest published at triage time)\n\n- Fixed in: 2026.2.22 (planned next release)\n\n\nImpact\n\nAttackers able to supply or influence attachment URLs could force redirect chains to non-allowlisted targets, weakening\nSSRF boundary controls for MSTeams media ingestion.",
+  "summary": "OpenClaw MSTeams attachment redirect handling could bypass configured media host allowlists",
+  "description": "Summary\nIn OpenClaw MSTeams media download flows, redirect handling could bypass configured mediaAllowHosts checks in specific attachment paths. Redirect chains were not consistently constrained to allowlisted targets before accepting fetched content.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Affected versions: <= 2026.2.21-2 (latest published at triage time)\n- Fixed in: 2026.2.22 (planned next release)\n\nImpact\nAttackers able to supply or influence attachment URLs could force redirect chains to non-allowlisted targets, weakening SSRF boundary controls for MSTeams media ingestion.",
   "severity": "MEDIUM",
   "suggestion": "Upgrade openclaw to >= 2026.2.22 or later. Commit(s) - 73d93dee64127a26f1acd09d0403b794cdeb4f5c - b34097f62df9d1960cc22600269cd3f3284e2124",
   "rule": "version <= \"2026.2.21-2\"",

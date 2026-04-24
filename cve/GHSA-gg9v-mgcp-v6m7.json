@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-gg9v-mgcp-v6m7",
+  "summary": "OpenClaw Bootstrap setup codes were not bound to the intended device role and scopes, allowing first-use privilege escalation during pairing.",
+  "description": "Summary\nBootstrap setup codes were not bound to the intended device role and scopes, allowing first-use privilege escalation during pairing.\n\nCurrent Maintainer Triage\n- Status: open\n- Normalized severity: high\n- Assessment: Real first-use bootstrap privilege-escalation bug fixed and shipped in v2026.3.22+, so keep open for publication with current severity.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.13-1\n- Patched versions: >= 2026.3.22\n- First stable tag containing the fix: v2026.3.22",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.3.22 or later. Commit(s) - a600c72ed7d0045a27f58bf031d2b36ecb0141c9 — 2026-03-22T23:57:15-07:00",
+  "rule": "version <= \"2026.3.13-1\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-gg9v-mgcp-v6m7"
+  ]
+}

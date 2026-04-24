@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-rg8m-3943-vm6q",
+  "summary": "OpenClaw Matrix thread root and reply context bypass sender allowlist",
+  "description": "Summary\nMatrix thread root and reply context bypass sender allowlist\n\nCurrent Maintainer Triage\n- Status: open\n- Normalized severity: medium\n- Assessment: Real in shipped v2026.3.28 Matrix because fetched thread-root/reply context bypasses sender allowlists, with unreleased mainline filtering fix.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - 8a563d603b70ef6338915f0527bee87282c3bad5 — 2026-03-31T17:09:03+01:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-rg8m-3943-vm6q"
+  ]
+}

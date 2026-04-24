@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-m6fx-m8hc-572m",
+  "summary": "OpenClaw Telegram audio preflight transcription enables resource consumption by unauthorized senders",
+  "description": "Summary\nTelegram audio preflight transcription enables resource consumption by unauthorized senders\n\nCurrent Maintainer Triage\n- Status: narrow\n- Normalized severity: medium\n- Assessment: v2026.3.28 still lets unauthorized Telegram group senders trigger audio preflight before allowlist enforcement, but the real impact is resource or billing burn rather than direct data exposure or host compromise.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - c4fa8635d03943ffe9e294d501089521dca635c5 — 2026-03-30T12:19:31+01:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-m6fx-m8hc-572m"
+  ]
+}

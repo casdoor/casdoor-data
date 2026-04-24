@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-3q42-xmxv-9vfr",
+  "summary": "OpenClaw Gateway operator.write Can Reach Admin-Class Talk Voice Config Persistence via chat.send",
+  "description": "Summary\nGateway operator.write Can Reach Admin-Class Talk Voice Config Persistence via chat.send\n\nCurrent Maintainer Triage\n- Status: narrow\n- Normalized severity: medium\n- Assessment: Real shipped operator.write to admin-class Talk Voice config persistence bug, but it is the same narrow authenticated persistence class and should be normalized below high.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.24\n- Patched versions: >= 2026.3.28\n- First stable tag containing the fix: v2026.3.28",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Commit(s) - e34694733fc64931ed4a543c73d84ad3435d5df1 — 2026-03-25T19:55:26Z",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-3q42-xmxv-9vfr"
+  ]
+}

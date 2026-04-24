@@ -1,0 +1,18 @@
+{
+  "name": "kubeai",
+  "description": "KubeAI is an AI inference operator for Kubernetes, providing an OpenAI-compatible API to deploy and scale LLMs, embeddings, and speech-to-text models.",
+  "severity": "info",
+  "product": "kubeai",
+  "vendor": "kubeai-project",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>KubeAI</title>"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

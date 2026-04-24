@@ -1,10 +1,10 @@
 {
   "name": "OpenClaw",
   "code": "GHSA-7rcp-mxpq-72pj",
-  "summary": "Summary The manual Chutes OAuth login flow could accept attacker-controlled callback input in a way that bypassed OAuth CSRF state validation, potentially resulting in credential substitution.",
-  "description": "Summary\n\n\nThe manual Chutes OAuth login flow could accept attacker-controlled callback input in a way that bypassed OAuth CSRF state\nvalidation, potentially resulting in credential substitution.\n\n\nImpact\n\n\nIf an attacker can convince a user to paste attacker-provided OAuth callback data during the manual login prompt, OpenClaw\nmay exchange an attacker-obtained authorization code and persist tokens for the wrong Chutes account.\n\n\nThe automatic local callback flow is not affected (it validates state in the local HTTP callback handler).\n\n\nAffected Packages / Versions\n\n\n- openclaw (npm): <= 2026.2.13 when using the manual Chutes OAuth login flow.\n\n\nFix\n\n\nThe manual flow now requires the full redirect URL (must include code and state), validates the returned state against\nthe expected value, and rejects code-only pastes.",
+  "summary": "OpenClaw Chutes manual OAuth state validation bypass can cause credential substitution",
+  "description": "Summary\n\nThe manual Chutes OAuth login flow could accept attacker-controlled callback input in a way that bypassed OAuth CSRF state validation, potentially resulting in credential substitution.\n\nImpact\n\nIf an attacker can convince a user to paste attacker-provided OAuth callback data during the manual login prompt, OpenClaw may exchange an attacker-obtained authorization code and persist tokens for the wrong Chutes account.\n\nThe automatic local callback flow is not affected (it validates state in the local HTTP callback handler).\n\nAffected Packages / Versions\n\n- openclaw (npm): <= 2026.2.13 when using the manual Chutes OAuth login flow.\n\nFix\n\nThe manual flow now requires the full redirect URL (must include code and state), validates the returned state against the expected value, and rejects code-only pastes.",
   "severity": "MEDIUM",
-  "suggestion": "Upgrade openclaw to >= 2026.2.14 or later. The manual flow now requires the full redirect URL (must include",
+  "suggestion": "Upgrade openclaw to >= 2026.2.14 or later. The manual flow now requires the full redirect URL (must include code and state), validates the returned state against the expected value, and rejects code-only pastes.",
   "rule": "version <= \"2026.2.13\"",
   "references": [
     "https://github.com/openclaw/openclaw/security/advisories/GHSA-7rcp-mxpq-72pj"

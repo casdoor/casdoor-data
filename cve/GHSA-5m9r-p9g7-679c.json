@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-5m9r-p9g7-679c",
+  "summary": "OpenClaw Zalo webhook rate limiting could be bypassed before secret validation",
+  "description": "Summary\n\nThe Zalo webhook handler applied request rate limiting only after webhook authentication succeeded. Requests with an invalid secret returned 401 but did not count against the rate limiter, allowing repeated secret guesses without triggering 429.\n\nImpact\n\nThis made brute-force guessing materially easier for weak but policy-compliant webhook secrets. Once the secret was guessed, an attacker could submit forged Zalo webhook traffic.\n\nAffected versions\n\nopenclaw <= 2026.3.11\n\nPatch\n\nFixed in openclaw 2026.3.12. Rate limiting now applies before successful authentication is required, closing the pre-auth brute-force gap. Users should update to 2026.3.12 or later and prefer strong webhook secrets.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to 2026.3.12 or later.",
+  "rule": "version <= \"2026.3.11\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-5m9r-p9g7-679c"
+  ]
+}

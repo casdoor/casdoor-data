@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-99qw-6mr3-36qr",
+  "summary": "OpenClaw Workspace plugin auto-discovery allowed code execution from cloned repositories",
+  "description": "Summary\n\nOpenClaw automatically discovered and loaded plugins from .openclaw/extensions/ inside the current workspace without an explicit trust or install step. A malicious repository could include a crafted workspace plugin that executed as soon as a user ran OpenClaw from that cloned directory.\n\nImpact\n\nOpening or running OpenClaw in an untrusted repository could lead to arbitrary code execution under the user's account.\n\nAffected versions\n\nopenclaw <= 2026.3.11\n\nPatch\n\nFixed in openclaw 2026.3.12. Workspace plugin loading now requires explicit trusted state before execution. Users should update to 2026.3.12 or later and avoid running OpenClaw inside untrusted repositories on older releases.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to 2026.3.12 or later.",
+  "rule": "version <= \"2026.3.11\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-99qw-6mr3-36qr"
+  ]
+}

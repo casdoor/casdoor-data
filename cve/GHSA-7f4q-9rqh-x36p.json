@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-7f4q-9rqh-x36p",
+  "summary": "OpenClaw macOS optional allowlist basename matching could bypass path-based policy",
+  "description": "Summary\nOn macOS node-host, optional exec-approval allowlist mode previously treated basename-only entries (for example echo) as trusted command matches.\nThis could allow a same-name local binary (for example ./echo) to run without approval under security=allowlist + ask=on-miss.\n\nScope / Preconditions\n- macOS node-host path.\n- Optional exec approvals feature enabled with security=allowlist.\n- Basename-only allowlist entries configured.\n\nDefault install posture is not impacted: security=deny by default.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version at triage time: 2026.2.21-2\n- Vulnerable range: <=2026.2.21-2\n- Planned patched version (next release): >= 2026.2.22\n\nRemediation\n- Enforced path-only allowlist matching on macOS node-host (basename fallback removed).\n- Added migration for legacy basename allowlist entries to last-resolved paths when available.\n- UI/store validation now rejects non-path allowlist patterns.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.22 or later. Commit(s) - dd41fadcaf58fd9deb963d6e163c56161e7b35dd",
+  "rule": "version <= \"2026.2.21-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-7f4q-9rqh-x36p"
+  ]
+}

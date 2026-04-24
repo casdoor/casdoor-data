@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-cqgw-44wg-44rf",
+  "summary": "OpenClaw Discord voice manager bypasses channel-level member access allowlist",
+  "description": "Summary\nDiscord voice manager bypasses channel-level member access allowlist\n\nCurrent Maintainer Triage\n- Status: open\n- Normalized severity: medium\n- Assessment: v2026.3.28 still accepts Discord voice ingress before channel allowlist authorization, and main-only gating means this remains a real shipped access-control bug.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - dba96e7507e0900f120e5e28e57755d69bf78759 — 2026-03-31T21:29:13+09:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-cqgw-44wg-44rf"
+  ]
+}

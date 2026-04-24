@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-r9q5-c7qc-p26w",
+  "summary": "OpenClaw Nextcloud Talk webhook replay could trigger duplicate inbound processing",
+  "description": "Summary\nWhen Nextcloud Talk webhook signing was valid, replayed requests could be accepted without durable replay suppression, allowing duplicate inbound processing after replay-window expiry or process restart.\n\nDetails\nOpenClaw's Nextcloud Talk webhook path verified HMAC(secret, random + body) but previously lacked durable replay state tied to webhook events. This allowed replay of a previously valid signed request in some operational conditions.\n\nThe fix on main adds:\n- persistent per-account replay dedupe for Nextcloud Talk webhook events,\n- replay checks before webhook side effects (onMessage),\n- backend-origin validation against configured account base URL (when configured).\n\nImpact\nA captured valid signed webhook request could be replayed to trigger duplicate inbound handling. This is an integrity/availability issue (duplicate actions/noise), scoped to deployments using Nextcloud Talk webhook integration.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Affected: <= 2026.2.24\n- Patched in release: 2026.2.25",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.25 or later. Commit(s) - d512163d686ad6741783e7119ddb3437f493dbbc",
+  "rule": "version <= \"2026.2.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-r9q5-c7qc-p26w"
+  ]
+}

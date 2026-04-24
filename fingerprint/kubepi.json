@@ -1,0 +1,23 @@
+{
+  "name": "KubePi",
+  "description": "A CLI tool that simplifies setting up and managing Kubeflow environments on Raspberry Pi devices.",
+  "severity": "info",
+  "product": "KubePi",
+  "vendor": "1Panel",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>KubePi</title>"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/",
+    "part": "body",
+    "regex": "version.*?v(\\d+\\.\\d+\\.\\d+)"
+  }
+}

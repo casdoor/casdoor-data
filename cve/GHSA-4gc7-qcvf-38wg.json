@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-4gc7-qcvf-38wg",
+  "summary": "OpenClaw non-default configuration: manually adding sort to tools.exec.safeBins could bypass allowlist approval via --compress-program",
+  "description": "Summary\nThis issue applies to a non-default configuration only.\nIf sort is manually added to tools.exec.safeBins, OpenClaw could treat sort --compress-program=<prog> as valid safe-bin usage.\nIn security=allowlist + ask=on-miss, this could satisfy allowlist checks and skip operator approval, while GNU sort may invoke an external program via --compress-program.\n\nAffected Packages / Versions\n- Ecosystem: npm\n- Package: openclaw\n- Affected: <= 2026.2.21-2\n- Patched (planned next release): >= 2026.2.22\n\nDefault Installations\nDefault installs are not impacted by this specific path because sort is not included in default tools.exec.safeBins.\n\nImpact\n- Type: approval/allowlist bypass in optional safe-bin configuration\n- Scope: deployments that explicitly include sort in tools.exec.safeBins and use allowlist + ask=on-miss\n- Consequence: an external program may run under the OpenClaw process context without expected approval\n\nTechnical Details\n- sort safe-bin profile allowed --compress-program as a value flag.\n- Safe-bin satisfaction could therefore mark allowlist checks as satisfied.\n- In ask=on-miss, satisfied allowlist checks skip approval prompts.\n\nFix\n- Block --compress-program in safe-bin sort policy.\n- Add unit and e2e regression coverage for sort --compress-program denial in safe-bin mode.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.22 or later. - Block --compress-program in safe-bin sort policy. - Add unit and e2e regression coverage for sort --compress-program denial in safe-bin mode.",
+  "rule": "version <= \"2026.2.21-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-4gc7-qcvf-38wg"
+  ]
+}

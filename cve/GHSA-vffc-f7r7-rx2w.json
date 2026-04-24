@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-vffc-f7r7-rx2w",
+  "summary": "OpenClaw Improper Neutralization of Line Breaks in systemd Unit Generation Enables Local Command Execution (Linux)",
+  "description": "Summary\nA command injection vulnerability exists in OpenClaw’s Linux systemd unit generation path.\nWhen rendering Environment= entries, attacker-controlled values are not rejected for CR/LF, and systemdEscapeArg() uses an incorrect whitespace-matching regex. This allows newline injection to break out of an Environment= line and inject standalone systemd directives (for example, ExecStartPre=). On service restart, the injected command is executed, resulting in local arbitrary command execution (local RCE) under the gateway service user.\n\n---\n\nDetails\nThe issue is in src/daemon/systemd-unit.ts:\n\n- renderEnvLines(...) builds:\n- Environment=${systemdEscapeArg(${key}=${value})}\n- No CR/LF validation is enforced for environment keys/values before writing unit lines.\n- systemdEscapeArg(...) uses:\n- /[\\\\s\"\\\\\\\\]/\n- In this regex, \\\\s is interpreted as a literal backslash + s, not a whitespace character class.\nAs a result, whitespace detection/quoting behavior is incorrect.\nBecause systemd parses unit files line-by-line, a newline inside an environment value can inject an additional directive line. Example rendered output:\n\n``ini\nEnvironment=INJECT=ok\nExecStartPre=/bin/touch /tmp/oc15789_rce\n`\n\nAt restart time, systemd executes ExecStartPre, enabling command execution.\n\nRelevant code path/components involved in exploitation chain:\n- src/daemon/systemd-unit.ts\n- src/commands/daemon-install-helpers.ts\n- src/config/env-vars.ts\n- src/config/zod-schema.ts\n\nTrigger conditions:\n1. Attacker can influence config.env.vars (directly or indirectly).\n2. Install/reinstall path is invoked to write/update the unit.\n3. Service restart occurs (systemctl --user restart ...).\n\n---\n\nPoC\nEnvironment: Linux host with systemd user services enabled.\n\n1. Configure a malicious environment value in OpenClaw config (config.env.vars), including a newline and injected directive:\n- Key: INJECT\n- Value:\n`text\nok\nExecStartPre=/bin/touch /tmp/oc15789_rce\n`\n\n2. Install/reinstall the gateway service (fixed port ...",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.2.21 or later. Commit(s) - 61f646c41fb43cd87ed48f9125b4718a30d38e84",
+  "rule": "version <= \"2026.2.19-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-vffc-f7r7-rx2w"
+  ]
+}
