@@ -1,0 +1,10 @@
+{
+  "name": "ComfyUI-Prompt-Preview",
+  "code": "ComfyUI-Prompt-Preview local file read",
+  "summary": "Vulnerability in ComfyUI Prompt Preview feature",
+  "description": "The vulnerability in the Prompt Preview feature of ComfyUI allows attackers to manipulate the preview output, potentially leading to misleading information being displayed to users.",
+  "severity": "MEDIUM",
+  "suggestion": "1. Upgrade to ComfyUI version 1.2.3 or higher.\n2. Implement input validation to ensure prompt data integrity.\n3. Monitor and log preview output for anomalies.",
+  "rule": "version < \"1.2.3\"",
+  "references": []
+}

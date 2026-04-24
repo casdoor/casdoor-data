@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-v773-r54f-q32w",
+  "summary": "OpenClaw Slack: dmPolicy=open allowed any DM sender to run privileged slash commands",
+  "description": "Summary\n\nWhen Slack DMs are configured with dmPolicy=open, the Slack slash-command handler incorrectly treated any DM sender as command-authorized. This allowed any Slack user who could DM the bot to execute privileged slash commands via DM, bypassing intended allowlist/access-group restrictions.\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n- Affected versions: <= 2026.2.13\n- Affected configuration: Slack DMs enabled with channels.slack.dm.policy: open (aka dmPolicy=open)\n\nImpact\n\nAny Slack user in the workspace who can DM the bot could invoke privileged slash commands via DM.\n\nFix\n\nThe slash-command path now computes CommandAuthorized for DMs using the same allowlist/access-group gating logic as other inbound paths.\n\nFix commit(s):\n- f19eabee54c49e9a2e264b4965edf28a2f92e657\n\nThanks @christos-eth for reporting.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to 2026.2.14 or later. The slash-command path now computes CommandAuthorized for DMs using the same allowlist/access-group gating logic as other inbound paths. Fix commit(s): - f19eabee54c49e9a2e264b4965edf28a2f92e657",
+  "rule": "version <= \"2026.2.13\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-v773-r54f-q32w"
+  ]
+}

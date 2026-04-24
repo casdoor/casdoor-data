@@ -1,0 +1,10 @@
+{
+  "name": "ollama",
+  "code": "ollama-deployment-security-advisory",
+  "summary": "Exposing Ollama externally may lead to compute resource theft and data abuse",
+  "description": "Exposing Ollama externally may lead to compute resource theft and data abuse",
+  "severity": "LOW",
+  "suggestion": "It is recommended to expose Ollama only locally",
+  "rule": "is_internal==\"true\"",
+  "references": []
+}

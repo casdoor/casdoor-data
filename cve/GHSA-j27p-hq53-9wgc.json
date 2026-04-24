@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-j27p-hq53-9wgc",
+  "summary": "OpenClaw Denial of service via unbounded URL-backed media fetch",
+  "description": "Summary URL-backed media fetch handling allocated the entire response payload in memory (arrayBuffer) before enforcing maxBytes, allowing oversized responses to cause memory exhaustion.\nAffected Versions - openclaw (npm): < 2026.2.14 - clawdbot (npm): <= 2026.1.24-3\nPatched Versions - openclaw (npm): 2026.2.14\nFix Commit - openclaw/openclaw main: 00a08908892d1743d1fc52e5cbd9499dd5da2fe0\nDetails Affected component: - src/media/input-files.ts (fetchWithGuard)\nWhen content-length is missing or incorrect, reading the body via response.arrayBuffer() buffers the full payload before a size check can run.\nProof of Concept 1. Configure URL-based media input. 2. Serve a response larger than maxBytes (chunked transfer / no content-length). 3. Trigger the fetchWithGuard URL fetch path.\nExample local server (large response): ``bash node -e 'require(\"http\").createServer((_,res)=>{res.writeHead(200,{\"content-type\":\"application/octet-stream\"});for(let i=0;i<1024;i++)res.write(Buffer.alloc(1024*64));res.end();}).listen(18888)' `\nImpact Availability loss via memory pressure from attacker-controlled remote media responses.\nMitigation Until a patched release is available, disable URL-backed media inputs (or restrict to a tight hostname allowlist) and use conservative maxBytes` limits.\nCredits Reported by @vincentkoc.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >=2026.2.14 or later. Commit - openclaw/openclaw main: 00a08908892d1743d1fc52e5cbd9499dd5da2fe0 Until a patched release is available, disable URL-backed media inputs (or restrict to a tight hostname allowlist) and use conservative maxBytes limits.",
+  "rule": "version < \"2026.2.14\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-j27p-hq53-9wgc"
+  ]
+}

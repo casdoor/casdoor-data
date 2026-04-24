@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-p4x4-2r7f-wjxg",
+  "summary": "OpenClaw Gateway exec allow-always over-trusts positional carrier executables",
+  "description": "Summary\n\nAllow-always persistence could trust wrapper carrier executables instead of the actual invoked target when commands were routed through dispatch wrappers.\n\nImpact\n\nA one-time approval could persist a broader future allowlist entry than the operator intended, weakening execution approval boundaries.\n\nAffected Component\n\nsrc/infra/exec-approvals-allowlist.ts\n\nFixed Versions\n\n- Affected: <= 2026.3.24\n- Patched: >= 2026.3.28\n- Latest stable 2026.3.28 contains the fix.\n\nFix\n\nFixed by commit 9ec44fad39 (Exec approvals: reject wrapper carrier allow-always targets).",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Fixed by commit 9ec44fad39 (Exec approvals: reject wrapper carrier allow-always targets).",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-p4x4-2r7f-wjxg"
+  ]
+}

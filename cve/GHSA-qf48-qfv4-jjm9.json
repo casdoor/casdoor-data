@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-qf48-qfv4-jjm9",
+  "summary": "OpenClaw Feishu extension resolveUploadInput bypasses file-system sandbox and allows arbitrary file reads via upload_image",
+  "description": "Summary\n\nFeishu upload path resolution could read files outside the configured localRoots sandbox before handing them to the upload path.\n\nImpact\n\nA tool caller constrained to workspace or localRoots paths could exfiltrate arbitrary host files through Feishu upload actions.\n\nAffected Component\n\nextensions/feishu/src/docx.ts\n\nFixed Versions\n\n- Affected: >= 2026.2.6, <= 2026.3.24\n- Patched: >= 2026.3.28\n- Latest stable 2026.3.28 contains the fix.\n\nFix\n\nFixed by commit 764394c78b (fix: enforce localRoots sandbox on Feishu docx upload file reads).",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Fixed by commit 764394c78b (fix: enforce localRoots sandbox on Feishu docx upload file reads).",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-qf48-qfv4-jjm9"
+  ]
+}

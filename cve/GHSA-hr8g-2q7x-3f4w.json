@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-hr8g-2q7x-3f4w",
+  "summary": "OpenClaw OpenClaw Gateway Control Interface Information Disclosure Vulnerability",
+  "description": "Summary\nOpenClaw Gateway Control Interface Information Disclosure Vulnerability\n\nCurrent Maintainer Triage\n- Status: narrow\n- Normalized severity: low\n- Assessment: Released Control UI bootstrap JSON did expose version and assistant agent id, but that is low-severity fingerprinting or info disclosure only; unreleased c5c10adc trims the payload.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - c5c10adc022f42eb75ebb3bf364dd607738683b3 — 2026-03-30T15:08:19+01:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-hr8g-2q7x-3f4w"
+  ]
+}

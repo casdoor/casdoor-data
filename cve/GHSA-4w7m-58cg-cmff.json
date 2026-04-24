@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-4w7m-58cg-cmff",
+  "summary": "OpenClaw Leaf subagents could steer sibling sessions across sandbox boundaries",
+  "description": "Summary\nIn affected versions of openclaw, sandboxed leaf subagents could still access the subagents control surface and resolve against the parent requester scope instead of remaining confined to their own session tree.\n\nImpact\nA low-privilege sandboxed leaf worker could steer or kill a sibling run owned by the same requester and cause that sibling to execute with its own broader tool policy. This is a sandbox and session-scope boundary bypass.\n\nAffected Packages and Versions\n- Package: openclaw (npm)\n- Affected versions: <= 2026.3.8\n- Fixed in: 2026.3.11\n\nTechnical Details\nLeaf subagents retained the subagents tool, and subagent control requests were authorized against the parent requester scope rather than the caller's own spawned descendants. The control path prevented only self-targeting, not cross-sibling steering.\n\nFix\nOpenClaw now removes subagents control access from leaf subagents by default, scopes subagent control to the caller's own descendants, and rejects steer and kill requests that target runs outside that descendant tree. The fix shipped in openclaw@2026.3.11.\n\nWorkarounds\nUpgrade to 2026.3.11 or later.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to 2026.3.11 or later. OpenClaw now removes subagents control access from leaf subagents by default, scopes subagent control to the caller's own descendants, and rejects steer and kill requests that target runs outside that descendant tree. The fix shipped in openclaw@2026.3.11.",
+  "rule": "version <= \"2026.3.8\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-4w7m-58cg-cmff"
+  ]
+}

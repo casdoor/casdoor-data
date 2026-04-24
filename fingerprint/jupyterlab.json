@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab",
-  "description": "A web-based interactive development environment for creating and sharing computational documents that include notebooks, code, and data.",
+  "description": "A web-based interactive development environment for creating and sharing computational documents containing notebooks, code, and data.",
   "severity": "info",
   "product": "jupyterlab",
   "vendor": "jupyter",
@@ -14,10 +14,5 @@
       }
     ]
   },
-  "versionInfo": {
-    "method": "",
-    "path": "",
-    "part": "",
-    "regex": ""
-  }
+  "versionInfo": {}
 }

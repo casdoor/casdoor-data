@@ -1,6 +1,6 @@
 {
   "name": "openwebui",
-  "description": "An open-source, self-hosted AI platform that provides a user-friendly interface for running local large language models, with support for runtimes such as Ollama.",
+  "description": "An open-source, self-hosted AI platform providing a user-friendly interface for running large language models locally, supporting runners like Ollama.",
   "severity": "info",
   "product": "open-webui",
   "vendor": "open-webui",
@@ -10,7 +10,7 @@
     "matchers": [
       {
         "pos": "body",
-        "value": "title=\"Open WebUI"
+        "value": "title=\"Open WebUI\""
       }
     ]
   },

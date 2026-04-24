@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-8rh7-6779-cjqq",
+  "summary": "OpenClaw CWD `.env` environment variable injection bypasses host-env policy and allows config takeover",
+  "description": "Summary\n\nOpenClaw loaded the current working directory .env before trusted state-dir configuration, allowing untrusted workspace state to inject host environment values.\n\nImpact\n\nA repository or workspace containing a malicious .env file could override runtime configuration and security-sensitive environment settings when OpenClaw started there.\n\nAffected Component\n\nsrc/infra/dotenv.ts, src/cli/dotenv.ts\n\nFixed Versions\n\n- Affected: <= 2026.3.24\n- Patched: >= 2026.3.28\n- Latest stable 2026.3.28 contains the fix.\n\nFix\n\nFixed by commit 6a79324802 (Filter untrusted CWD .env entries before OpenClaw startup).",
+  "severity": "CRITICAL",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Fixed by commit 6a79324802 (Filter untrusted CWD .env entries before OpenClaw startup).",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-8rh7-6779-cjqq"
+  ]
+}

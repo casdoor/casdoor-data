@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-5847-rm3g-23mw",
+  "summary": "OpenClaw Hook auth rate limiter bypass via IPv4-mapped IPv6 client key variants",
+  "description": "Vulnerability\n\nThe hook authentication throttle keyed failed attempts by raw socket remoteAddress text.\n\nIPv4 and IPv4-mapped IPv6 forms of the same client (for example 1.2.3.4 and ::ffff:1.2.3.4) were treated as different clients, allowing separate rate-limit buckets.\n\nImpact\n\nAn attacker could split failed hook-auth attempts across both address forms and effectively double the brute-force budget from 20 to 40 attempts per 60-second window.\n\nAffected Components\n\n- src/gateway/server-http.ts\n- src/gateway/auth-rate-limit.ts\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n- Vulnerable versions: <= 2026.2.21-2\n- Patched version (planned next release): 2026.2.22\n\nRemediation\n\nCentralize and reuse canonical client-IP normalization for auth rate-limiting, and use that canonical key for hook auth throttling.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.22 or later. Commit(s) - 3284d2eb227e7b6536d543bcf5c3e320bc9d13c5",
+  "rule": "version <= \"2026.2.21-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-5847-rm3g-23mw"
+  ]
+}

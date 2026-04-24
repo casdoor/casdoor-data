@@ -1,0 +1,22 @@
+{
+  "name": "Clawdbot Gateway",
+  "description": "",
+  "severity": "info",
+  "product": "Clawdbot Gateway",
+  "vendor": "Clawdbot Gateway",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>Clawdbot Control</title>"
+      },
+      {
+        "pos": "body",
+        "value": "<clawdbot-app></clawdbot-app>"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

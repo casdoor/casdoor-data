@@ -1,0 +1,27 @@
+{
+  "name": "langfuse",
+  "description": "An open-source observability and analytics platform designed for applications powered by large language models (LLMs).",
+  "severity": "info",
+  "product": "langfuse",
+  "vendor": "langfuse",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "alt=\"Langfuse Icon\""
+      },
+      {
+        "pos": "body",
+        "value": "data-sentry-component=\"LangfuseIcon\""
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/api/trpc/public.checkUpdate",
+    "part": "body",
+    "regex": "\"currentVersion\":\"v(\\d+\\.\\d+\\.\\d+)\""
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "bentoml",
+  "description": "BentoML is a Python library for building online serving systems optimized for AI apps and model inference.",
+  "severity": "info",
+  "product": "bentoml",
+  "vendor": "bentoml",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "BentoML Prediction Service"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

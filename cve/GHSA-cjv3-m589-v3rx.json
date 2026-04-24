@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-cjv3-m589-v3rx",
+  "summary": "OpenClaw Canvas route hardening for mixed-trust deployments",
+  "description": "Summary\nThis advisory tracks a defense-in-depth hardening for canvas routes. In mixed-trust or network-visible deployments, prior canvas auth/fallback behavior could broaden access beyond intended boundaries.\n\nDeployment Context\nOpenClaw’s default model is trusted host + loopback-first access. Some operators intentionally expose canvas routes on LAN/tailnet. This update is aimed at those broader deployment patterns.\n\nWhat Changed\n- Require explicit token or session-capability authorization for canvas routes.\n- Remove shared-IP fallback paths for canvas access.\n- Tighten bind/fallback behavior to fail closed.\n\nImpact\nRisk was highest in non-loopback or mixed-trust environments. In strict single-operator trusted-host setups, practical exposure is lower.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Vulnerable: <= 2026.2.19-2\n- Patched: 2026.2.21 (next release target)",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >=2026.2.21 or later. Commit(s) - c45f3c5b004c8d63dc0e282e2176f8c9355d24f1 - 08a7967936cfc0b2af6b27ec1f9272542648ad6c",
+  "rule": "version <= \"2026.2.19-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-cjv3-m589-v3rx"
+  ]
+}

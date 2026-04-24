@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-98hh-7ghg-x6rq",
+  "summary": "OpenClaw Discord text `/approve` bypasses `channels.discord.execApprovals.approvers` and allows non-approvers to resolve pending exec approvals",
+  "description": "Summary\n\nDiscord text approval commands resolved pending exec approvals without honoring the configured approver allowlist.\n\nImpact\n\nA Discord user who was allowed to send commands but was not in the approver list could still approve pending host execution.\n\nAffected Component\n\nextensions/discord/src/exec-approvals.ts, src/auto-reply/reply/commands-approve.ts\n\nFixed Versions\n\n- Affected: <= 2026.3.24\n- Patched: >= 2026.3.28\n- Latest stable 2026.3.28 contains the fix.\n\nFix\n\nFixed by commit 355abe5eba (Discord: enforce approver checks for text approvals).",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Fixed by commit 355abe5eba (Discord: enforce approver checks for text approvals).",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-98hh-7ghg-x6rq"
+  ]
+}

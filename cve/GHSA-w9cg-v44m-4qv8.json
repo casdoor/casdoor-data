@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-w9cg-v44m-4qv8",
+  "summary": "OpenClaw BASH_ENV / ENV startup-file injection into spawned shell commands",
+  "description": "Summary\nBASH_ENV / ENV startup-file injection could lead to unintended pre-command shell execution when attacker-controlled environment values were admitted and then inherited by host command execution paths.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Affected: <= 2026.2.19-2\n- Fixed on main: 2cdbadee1f8fcaa93302d7debbfc529e19868ea4\n- Planned patched release version: 2026.2.21\n\nDetails\nThe fix hardens environment handling across all relevant execution paths:\n- Blocks dangerous startup/runtime env keys and prefixes in shared host env sanitization.\n- Sanitizes inherited ambient environment even when no per-request overrides are provided.\n- Blocks dangerous config-driven env injection before values enter process environment.\n- Uses the same sanitizer in macOS host execution paths.\n- Aligns skill env override sanitization with the shared dangerous-env policy.\n\nImpact\nMedium. Exploitation requires local/privileged influence over configuration or environment inputs; there is no standalone remote unauthenticated trigger from this issue alone.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >=2026.2.21 or later. Commit(s) - 2cdbadee1f8fcaa93302d7debbfc529e19868ea4",
+  "rule": "version <= \"2026.2.19-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-w9cg-v44m-4qv8"
+  ]
+}

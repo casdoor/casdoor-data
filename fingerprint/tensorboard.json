@@ -1,0 +1,18 @@
+{
+  "name": "tensorboard",
+  "description": "",
+  "severity": "info",
+  "product": "tensorboard",
+  "vendor": "tensorboard",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "title>TensorBoard</title"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

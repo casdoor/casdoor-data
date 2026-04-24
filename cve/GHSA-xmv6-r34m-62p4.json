@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-xmv6-r34m-62p4",
+  "summary": "OpenClaw Sandbox media fallback tmp symlink alias bypass allows host file reads outside sandboxRoot",
+  "description": "Summary\nA sandbox path validation bypass in openclaw allows host file reads outside sandboxRoot via the media path fallback tmp flow when the fallback tmp root is a symlink alias.\n\nAffected Packages / Versions\n- Package: npm openclaw\n- Affected versions: <= 2026.2.24\n- Latest published npm version at triage time (February 26, 2026): 2026.2.24\n- Patched version : 2026.2.25\n\nDetails\nWhen /tmp/openclaw is unavailable or unsafe, resolvePreferredOpenClawTmpDir() in src/infra/tmp-openclaw-dir.ts fell back to os.tmpdir()/openclaw-<uid> without verifying that fallback path was a trusted non-symlink directory.\n\nresolveSandboxedMediaSource() (src/agents/sandbox-paths.ts) allows absolute tmp media paths under the OpenClaw tmp root using lexical containment and alias checks. If the fallback tmp root is a symlink alias (for example to /), inputs like $TMPDIR/openclaw-<uid>/etc/passwd can pass validation and resolve to host files outside sandboxRoot.\n\nImpact\nThis can break sandbox media path confinement and permit unauthorized host file reads (confidentiality impact).\n\nReproduction (high level)\n1. Force resolver fallback (make /tmp/openclaw unavailable/invalid).\n2. Make fallback root ($TMPDIR/openclaw-<uid>) a symlink alias to /.\n3. Submit media path under fallback root (for example $TMPDIR/openclaw-<uid>/etc/passwd).\n4. Observe accepted path and read outside sandboxRoot.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.25 or later. Commit(s) - 496a76c03ba85e15ea715e5a583e498ae04d36e3",
+  "rule": "version <= \"2026.2.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-xmv6-r34m-62p4"
+  ]
+}

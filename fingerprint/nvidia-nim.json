@@ -1,0 +1,18 @@
+{
+  "name": "nvidia-nim",
+  "description": "NVIDIA NIM inference microservice providing enterprise-grade AI model deployment and inference capabilities.",
+  "severity": "info",
+  "product": "nvidia-nim",
+  "vendor": "nvidia",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/v1/metadata",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "\"modelInfo\""
+      }
+    ]
+  },
+  "versionInfo": {}
+}

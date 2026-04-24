@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-chm2-m3w2-wcxm",
+  "summary": "OpenClaw Google Chat spoofing access with allowlist authorized mutable email principal despite sender-ID mismatch",
+  "description": "Summary\nGoogle Chat allowlisting supports matching by sender email in addition to immutable sender resource name (users/<id>). This weakens identity binding if a deployment assumes allowlists are strictly keyed by immutable principals.\n\nAffected Packages / Versions\n(As of 2026-02-14; based on latest published npm versions)\n- openclaw (npm): <= 2026.2.13\n- clawdbot (npm): <= 2026.1.24-3\n\nDetails\nAffected component:\n- extensions/googlechat/src/monitor.ts\n\nThe allowFrom checks accept:\n- Immutable sender id (users/<id>)\n- Raw email (alice@example.com) for usability\n\nHistorically, users/<email> was also treated as an email allowlist entry. This is now deprecated because it looks like an immutable ID but is actually a mutable principal.\n\nSecurity Triage (2026-02-14)\nSeverity: Low\n\nRationale:\n- Requests are authenticated as coming from Google Chat (token verification), so this is not a generic unauthenticated spoofing vector.\n- A realistic exploit generally requires Google Workspace / IdP administrative control over identity lifecycle (e.g. reassigning an email address to a different underlying account) to obtain the same email with a different users/<id>.\n- With that level of access, the attacker typically has broader compromise paths.\n\nWe still treat it as a valid defense-in-depth report because accepting mutable principals in authorization decisions can increase risk in chained-failure scenarios.\n\nRemediation / Behavior Changes\nGoal: preserve usability while reducing footguns.\n- Raw email allowlists remain supported.\n- users/<email> is deprecated and treated as a user id, not as an email allowlist.\n- Documentation recommends users/<id> when strict immutable binding is required.\n\nFixed In\n- openclaw (npm): >= 2026.2.14\n- clawdbot (npm): no patched release is published under this legacy package name; migrate to openclaw >= 2026.2.14.",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to >=2026.2.14 or later. Commit(s) - c8424bf29a921e25663b29f308640b3d91a49432 (PR #16243) Thanks @vincentkoc for reporting.",
+  "rule": "version <= \"2026.2.13\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-chm2-m3w2-wcxm"
+  ]
+}

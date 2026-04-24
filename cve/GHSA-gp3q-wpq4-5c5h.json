@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-gp3q-wpq4-5c5h",
+  "summary": "OpenClaw LINE group allowlist scope mismatch with DM pairing-store entries",
+  "description": "Summary\nIn specific LINE configurations, sender IDs approved through DM pairing could also satisfy group allowlist checks when operators expected group sender access to be scoped only to explicit group allowlists.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published version at triage/update time: 2026.2.25\n- Affected: <= 2026.2.25\n- Patched: >= 2026.2.26 (planned next release)\n\nImpact\nThis is a group-authorization scope mismatch. DM pairing-store entries could influence group sender authorization in allowlist mode.\n\nTechnical Details\nRoot cause: group allowlist composition inherited pairing-store entries intended for DM approvals. Under default DM pairing policy, a DM-paired sender could match group allowlist checks.\n\nFixes on main:\n- isolate group allowlist composition from pairing-store entries\n- centralize shared DM/group allowlist composition to preserve DM-only pairing behavior\n- add regression coverage for LINE and Mattermost policy paths",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.2.26 or later. Commit(s) - 8bdda7a651c21e98faccdbbd73081e79cffe8be0 - 892a9c24b0f6118729ab5b5f5499b1a7e792dd15 (follow-up refactor hardening)",
+  "rule": "version <= \"2026.2.25\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-gp3q-wpq4-5c5h"
+  ]
+}

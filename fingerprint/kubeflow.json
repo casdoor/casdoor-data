@@ -1,6 +1,6 @@
 {
   "name": "kubeflow",
-  "description": "An open-source platform that simplifies deploying and managing machine learning workflows on Kubernetes across the ML lifecycle.",
+  "description": "An open-source platform that simplifies deploying and managing machine learning workflows on Kubernetes, covering all stages of the ML lifecycle.",
   "severity": "info",
   "product": "kubeflow",
   "vendor": "kubeflow",

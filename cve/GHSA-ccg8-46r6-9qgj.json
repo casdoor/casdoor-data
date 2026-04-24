@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-ccg8-46r6-9qgj",
+  "summary": "OpenClaw Dispatch-wrapper depth-cap mismatch can bypass shell-wrapper approval gating in system.run allowlist mode",
+  "description": "Summary\nA wrapper-depth parsing mismatch in system.run allowed nested transparent dispatch wrappers (for example repeated /usr/bin/env) to suppress shell-wrapper detection while still matching allowlist resolution. In security=allowlist + ask=on-miss, this could bypass the expected approval prompt for shell execution.\n\nSeverity / Trust Model\nOpenClaw’s documented model treats authenticated gateway callers as trusted operators and exec approvals as operator guardrails. This issue is still a real approval-boundary bypass and is triaged as Medium in that model.\n\nTechnical Details\n- Dispatch-wrapper unwrapping stopped at MAX_DISPATCH_WRAPPER_DEPTH.\n- Shell-wrapper extraction could return non-wrapper once depth was exhausted.\n- Allowlist resolution could still succeed on partially unwrapped argv beginning with /usr/bin/env.\n- Result: nested wrapper chains could execute /bin/sh -c ... without fresh approval in allowlist + ask=on-miss.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published version at triage time: 2026.2.23\n- Vulnerable versions: <= 2026.2.23\n- Patched versions (planned next release): >= 2026.2.24\n\nVerification\n- Added regression coverage for depth-overflow wrapper chains at resolution and system.run invocation layers.\n- Reproduced previous PoC behavior before fix, then confirmed denial after fix with SYSTEM_RUN_DENIED: approval required.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.24 or later. Commit(s) - 57c9a18180c8b14885bbd95474cbb17ff2d03f0b",
+  "rule": "version <= \"2026.2.23\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-ccg8-46r6-9qgj"
+  ]
+}

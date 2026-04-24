@@ -1,0 +1,22 @@
+{
+  "name": "weknora",
+  "description": "WeKnora is an open-source document deep understanding and semantic retrieval framework based on LLMs by Tencent, providing web service interfaces, supporting document import, semantic search, and MCP configuration.",
+  "severity": "info",
+  "product": "weknora",
+  "vendor": "tencent",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>WeKnora</title>"
+      },
+      {
+        "pos": "body",
+        "value": "weknora"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

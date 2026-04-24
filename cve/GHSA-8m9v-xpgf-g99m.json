@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-8m9v-xpgf-g99m",
+  "summary": "OpenClaw Unauthorized sender bypass in stop triggers and /models command authorization",
+  "description": "Summary\nUnauthorized senders could trigger two command paths without sender authorization checks:\n1. stop-like natural-language abort triggers\n2. /models command output\n\nImpact\nAn unauthorized sender could disrupt active sessions and view model/auth metadata that should be authorization-gated.\n\nFix\nSender authorization is now enforced for stop-like abort triggers and /models listings.\n\nAffected and Patched Versions\n- Affected: <= 2026.2.26\n- Patched: 2026.3.1",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.1 or later. Sender authorization is now enforced for stop-like abort triggers and /models listings.",
+  "rule": "version <= \"2026.2.26\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-8m9v-xpgf-g99m"
+  ]
+}

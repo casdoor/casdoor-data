@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-hc5h-pmr3-3497",
+  "summary": "OpenClaw /pair approve command path omitted caller scope subsetting and reopened device pairing escalation",
+  "description": "Summary\n\nThe /pair approve command path called device approval without forwarding caller scopes into the core approval check.\n\nImpact\n\nA caller that held pairing privileges but not admin privileges could approve a pending device request asking for broader scopes, including admin access.\n\nAffected Component\n\nextensions/device-pair/index.ts, src/infra/device-pairing.ts\n\nFixed Versions\n\n- Affected: <= 2026.3.24\n- Patched: >= 2026.3.28\n- Latest stable 2026.3.28 contains the fix.\n\nFix\n\nFixed by commit 4ee4960de2 (Pairing: forward caller scopes during approval).",
+  "severity": "CRITICAL",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Fixed by commit 4ee4960de2 (Pairing: forward caller scopes during approval).",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-hc5h-pmr3-3497"
+  ]
+}

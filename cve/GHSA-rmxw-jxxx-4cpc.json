@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-rmxw-jxxx-4cpc",
+  "summary": "OpenClaw Matrix allowlist bypass via displayName and cross-homeserver localpart matching",
+  "description": "Summary\n\nOpenClaw Matrix DM allowlist matching could be bypassed in certain configurations.\n\nMatrix support ships as an optional plugin (not bundled with the core install), so this only affects deployments that have installed and enabled the Matrix plugin.\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n- Affected: >= 2026.1.14-1, < 2026.2.2\n- Patched: >= 2026.2.2\n\nDetails\n\nIn affected versions, DM allowlist decisions could be made by exact-matching channels.matrix.dm.allowFrom entries against multiple sender-derived candidates, including:\n\n- The sender display name (attacker-controlled and non-unique)\n- The sender MXID localpart with the homeserver discarded, so @alice:evil.example and @alice:trusted.example both match alice\n\nIf an operator configured channels.matrix.dm.allowFrom with display names or bare localparts (for example, \"Alice\" or \"alice\"), a remote Matrix user may be able to impersonate an allowed identity for allowlist purposes and reach the routing/agent pipeline.\n\nImpact\n\nMatrix DM allowlist identity confusion. The practical impact depends on your Matrix channel policies and what capabilities are enabled downstream.\n\nMitigation\n\n- Upgrade to openclaw >= 2026.2.2.\n- Ensure Matrix allowlists contain only full Matrix user IDs (MXIDs) like @user:server (or *). Do not use display names or bare localparts.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.2 or later. Commit(s) - 8f3bfbd1c4fb967a2ddb5b4b9a05784920814bcf Thanks @MegaManSec (https://joshua.hu) of AISLE Research Team for reporting. - Upgrade to openclaw >= 2026.2.2. - Ensure Matrix allowlists contain only full Matrix user IDs (MXIDs) like @user:server (or *). Do not use display names or bare localparts.",
+  "rule": "version < \"2026.2.2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-rmxw-jxxx-4cpc"
+  ]
+}

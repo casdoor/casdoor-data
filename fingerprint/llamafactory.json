@@ -1,0 +1,18 @@
+{
+  "name": "llamafactory",
+  "description": "A unified framework for efficiently fine-tuning 100+ large language models and vision-language models, providing the LLaMA Board web interface.",
+  "severity": "info",
+  "product": "llamafactory",
+  "vendor": "llama-factory",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "title\":=\"LLaMA Board"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

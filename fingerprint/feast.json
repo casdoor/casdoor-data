@@ -1,0 +1,22 @@
+{
+  "name": "feast",
+  "description": "",
+  "severity": "info",
+  "product": "feast-webui",
+  "vendor": "feast",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "/feast-favicon-300x300.png"
+      },
+      {
+        "pos": "body",
+        "value": "<title>Feast Feature Store</title>"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

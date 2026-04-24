@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-v3j7-34xh-6g3w",
+  "summary": "OpenClaw Loopback CDP probe can leak Gateway token to local listener",
+  "description": "Summary\nA local process can capture the OpenClaw Gateway auth token from Chrome CDP probe traffic on loopback.\n\nDetails\nAffected versions inject x-openclaw-relay-token for loopback CDP URLs, and CDP reachability probes send that header to /json/version.\nIf an attacker controls the probed loopback port, they can read that token and reuse it as Gateway bearer auth.\n\nRelevant code paths (pre-fix):\n- src/browser/extension-relay.ts (getChromeExtensionRelayAuthHeaders)\n- src/browser/cdp.helpers.ts (getHeadersWithAuth)\n- src/browser/chrome.ts (fetchChromeVersion)\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published (at triage): 2026.2.21-2\n- Vulnerable: <= 2026.2.21-2\n- Patched: >= 2026.2.22\n\nDeployment Model Applicability\nThis does not change OpenClaw’s documented security model for standard single-owner installs (you own the machine/VPS and trust local processes under that OS account boundary).\nRisk is for non-standard shared-user/shared-host installs where an untrusted local user/process can race/bind the loopback relay port.\n\nImpact\n- Local credential disclosure.\n- Follow-on impact depends on local deployment and enabled Gateway capabilities.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.22 or later. Commit(s) - afa22acc4a09fdf32be8a167ae216bee85c30dad",
+  "rule": "version <= \"2026.2.21-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-v3j7-34xh-6g3w"
+  ]
+}

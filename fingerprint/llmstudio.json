@@ -1,0 +1,27 @@
+{
+  "name": "llmstudio",
+  "description": "A framework and no-code GUI provided by H2O.ai for fine-tuning large language models.",
+  "severity": "info",
+  "product": "lmstudio",
+  "vendor": "lmstudio",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/zuqu3",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "Unexpected endpoint or method. (GET /zuqu3)"
+      },
+      {
+        "pos": "header",
+        "value": "x-powered-by: Express"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/",
+    "part": "body",
+    "regex": "v(\\d+\\.\\d+\\.?\\d*)"
+  }
+}

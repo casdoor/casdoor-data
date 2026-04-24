@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-83f3-hh45-vfw9",
+  "summary": "OpenClaw Android accepted cleartext remote gateway endpoints and sent stored credentials over ws://",
+  "description": "Summary\n\nBefore OpenClaw 2026.4.2, Android accepted non-loopback cleartext ws:// gateway endpoints and would send stored gateway credentials over that connection. Discovery beacons or setup codes could therefore steer the client onto a cleartext remote endpoint.\n\nImpact\n\nA user who followed a forged discovery result or scanned a crafted setup code could disclose stored gateway credentials to an attacker-controlled endpoint in plaintext. This was a transport-security bug in the Android gateway client.\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n- Affected versions: <= 2026.4.1\n- Patched versions: >= 2026.4.2\n- Latest published npm version: 2026.4.1",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to >= 2026.4.2 or later. Commit(s) - a941a4fef9bc43b2973c92d0dcff5b8a426210c5 — require TLS for remote Android gateway endpoints",
+  "rule": "version <= \"2026.4.1\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-83f3-hh45-vfw9"
+  ]
+}

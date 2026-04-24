@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-2rqg-gjgv-84jm",
+  "summary": "OpenClaw Gateway `agent` calls could override the workspace boundary",
+  "description": "Summary\n\nThe public gateway agent RPC allowed an authenticated operator with operator.write to supply attacker-controlled spawnedBy and workspaceDir values. That let the caller re-root the agent run outside its configured workspace boundary.\n\nImpact\n\nA non-owner operator could escape the intended workspace boundary and run normal file and exec tools from an arbitrary process-accessible directory.\n\nAffected versions\n\nopenclaw <= 2026.3.8\n\nPatch\n\nFixed in openclaw 2026.3.11 and included in later releases such as 2026.3.12. The gateway now enforces the configured workspace boundary for agent runs regardless of caller-supplied overrides.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to 2026.3.11 or later.",
+  "rule": "version <= \"2026.3.8\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-2rqg-gjgv-84jm"
+  ]
+}

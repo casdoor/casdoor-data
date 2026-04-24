@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-5mx2-2mgw-x8rm",
+  "summary": "OpenClaw BlueBubbles beta plugin webhook auth hardening (remove passwordless fallback)",
+  "description": "Summary\nBlueBubbles webhook auth in the optional beta iMessage plugin allowed a passwordless fallback path. In some reverse-proxy/local routing setups, this could allow unauthenticated webhook events.\n\nAffected Component and Scope\n- Component: extensions/bluebubbles webhook handler\n- Scope: only deployments using the optional BlueBubbles plugin where webhook password auth was not configured for incoming webhook events\n\nAffected Packages / Versions\n- Package: openclaw/openclaw (npm)\n- Latest published npm version at triage time (2026-02-21): 2026.2.19-2\n- Affected structured range: <=2026.2.19-2\n- Fixed on main; planned patched release: 2026.2.21 (>=2026.2.21)\n\nDetails\nThe vulnerable implementation had multiple auth branches, including a passwordless fallback with loopback/proxy heuristics.\n\nThe fix now uses one authentication codepath:\n- inbound webhook token/guid must match channels.bluebubbles.password\n- webhook target matching is consolidated to shared plugin-sdk logic\n- BlueBubbles config validation now requires password when serverUrl is set\n\nImpact\nBlueBubbles is an optional beta iMessage plugin, and onboarding/channel-add flows already require a password. Practical exposure is mainly custom/manual configurations that omitted webhook password authentication.\n\nRemediation\n- Upgrade to a release that includes this patch (>=2026.2.21, planned).\n- Ensure BlueBubbles webhook delivery includes a matching password (?password=<password> or x-password).",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >=2026.2.21 or later. Commit(s) - 6b2f2811dc623e5faaf2f76afaa9279637174590 - 283029bdea23164ab7482b320cb420d1b90df806",
+  "rule": "version <= \"2026.2.19-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-5mx2-2mgw-x8rm"
+  ]
+}

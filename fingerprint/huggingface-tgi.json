@@ -1,0 +1,22 @@
+{
+  "name": "huggingface-tgi",
+  "description": "Hugging Face Text Generation Inference service for high-performance deployment of large language models.",
+  "severity": "info",
+  "product": "text-generation-inference",
+  "vendor": "huggingface",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/info",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "\"model_id\":"
+      },
+      {
+        "pos": "body",
+        "value": "\"model_pipeline_tag\":"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

@@ -1,0 +1,27 @@
+{
+  "name": "marimo",
+  "description": "A reactive Python notebook with excellent reproducibility, native Git support, and the ability to be deployed as a script or application.",
+  "severity": "info",
+  "product": "marimo",
+  "vendor": "marimo",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>marimo</title>"
+      },
+      {
+        "pos": "icon",
+        "value": "-1864630356"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/api/version",
+    "part": "body",
+    "regex": "(\\d+\\.\\d+\\.\\d+)"
+  }
+}

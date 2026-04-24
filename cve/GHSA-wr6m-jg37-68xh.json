@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-wr6m-jg37-68xh",
+  "summary": "OpenClaw Unbounded memory growth in Zalo webhook via query-string key churn (unauthenticated DoS)",
+  "description": "Summary\nUnauthenticated requests to a reachable Zalo webhook endpoint could trigger unbounded in-memory key growth by varying query strings on the same valid webhook route.\n\nImpact\nAn attacker could cause memory pressure and potential process instability or OOM, degrading availability.\n\nFix\nWebhook security tracking now normalizes keys to matched webhook path semantics (query excluded) and bounds/prunes tracking state to prevent unbounded growth.\n\nAffected and Patched Versions\n- Affected: <= 2026.2.26\n- Patched: 2026.3.1",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.1 or later. Webhook security tracking now normalizes keys to matched webhook path semantics (query excluded) and bounds/prunes tracking state to prevent unbounded growth.",
+  "rule": "version <= \"2026.2.26\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-wr6m-jg37-68xh"
+  ]
+}

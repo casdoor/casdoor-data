@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-qc36-x95h-7j53",
+  "summary": "OpenClaw Unrecognized script runners could bypass `system.run` approval integrity",
+  "description": "Summary\nIn affected versions of openclaw, node-host system.run approvals did not bind a mutable file operand for some script runners, including forms such as tsx and jiti. An attacker could obtain approval for a benign script-runner command, rewrite the referenced script on disk, and have the modified code execute under the already approved run context.\n\nImpact\nDeployments that rely on node-host system.run approvals for script integrity could execute rewritten local code after operator approval. This can lead to unintended local code execution as the OpenClaw runtime user.\n\nAffected Packages and Versions\n- Package: openclaw (npm)\n- Affected versions: < 2026.3.11\n- Fixed in: 2026.3.11\n\nTechnical Details\nThe approval planner only tracked mutable script operands for a hardcoded set of interpreters and runtime forms. Commands such as tsx ./run.ts and jiti ./run.ts fell through without a bound file snapshot, so the final pre-execution revalidation step was skipped.\n\nFix\nOpenClaw now fails closed for approval-backed interpreter and runtime commands unless it can bind exactly one concrete local file operand, and it extends direct-file binding coverage for additional runtime forms. The fix shipped in openclaw@2026.3.11.\n\nWorkarounds\nUpgrade to 2026.3.11 or later.",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to 2026.3.11 or later. OpenClaw now fails closed for approval-backed interpreter and runtime commands unless it can bind exactly one concrete local file operand, and it extends direct-file binding coverage for additional runtime forms. The fix shipped in openclaw@2026.3.11.",
+  "rule": "version < \"2026.3.11\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-qc36-x95h-7j53"
+  ]
+}

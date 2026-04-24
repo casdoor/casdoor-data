@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-8jhh-jcqg-mj5p",
+  "summary": "OpenClaw Channel commands could bypass account-scoped `configWrites` restrictions",
+  "description": "Summary\nIn affected versions of openclaw, channel-initiated config mutations were authorized against the originating account's configWrites policy but did not consistently re-check the targeted account scope. An authorized sender on one account could mutate protected sibling-account configuration when the target account had configWrites: false.\n\nImpact\nThis is an account-scoped policy bypass inside a single gateway deployment. Channel commands such as /config set channels.<provider>.accounts.<id>... and config-backed /allowlist ... --config --account <id> could modify protected sibling-account configuration.\n\nAffected Packages and Versions\n- Package: openclaw (npm)\n- Affected versions: <= 2026.3.8\n- Fixed in: 2026.3.11\n\nTechnical Details\nThe mutation path validated the origin account scope but did not consistently authorize every resolved target scope. Ambiguous collection and root writes under channels and channels.<provider>.accounts could therefore reach protected account configuration from channel command surfaces.\n\nFix\nOpenClaw now authorizes config mutations against both the origin scope and each resolved target scope, and it rejects ambiguous root and collection writes from channel commands unless the caller is an internal gateway client with operator.admin. The fix shipped in openclaw@2026.3.11.\n\nWorkarounds\nUpgrade to 2026.3.11 or later.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to 2026.3.11 or later. OpenClaw now authorizes config mutations against both the origin scope and each resolved target scope, and it rejects ambiguous root and collection writes from channel commands unless the caller is an internal gateway client with operator.admin. The fix shipped in openclaw@2026.3.11.",
+  "rule": "version <= \"2026.3.8\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-8jhh-jcqg-mj5p"
+  ]
+}

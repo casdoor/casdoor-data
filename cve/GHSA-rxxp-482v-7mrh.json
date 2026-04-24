@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-rxxp-482v-7mrh",
+  "summary": "OpenClaw Inbound media downloads could exceed configured byte limits before rejection across multiple channels",
+  "description": "Summary\nOpenClaw did not consistently enforce configured inbound media byte limits before buffering remote media in several channel ingestion paths. A remote sender could trigger oversized downloads and memory pressure before rejection.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Affected versions: <= 2026.2.21-2 (latest published at triage time)\n- Fixed in: 2026.2.22 (planned next release)\n\nImpact\nAn attacker could cause elevated memory usage and potential process instability (denial of service) by sending oversized media payloads.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.22 or later. Commit(s) - 73d93dee64127a26f1acd09d0403b794cdeb4f5c",
+  "rule": "version <= \"2026.2.21-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-rxxp-482v-7mrh"
+  ]
+}

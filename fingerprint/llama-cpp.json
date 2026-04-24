@@ -1,0 +1,22 @@
+{
+  "name": "llama-cpp",
+  "description": "A C++ based LLaMA model inference engine that supports efficient local execution of LLaMA series models.",
+  "severity": "info",
+  "product": "llama-cpp",
+  "vendor": "llama-cpp",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/v1/models",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "\"owned_by\":\"llamacpp\""
+      },
+      {
+        "pos": "header",
+        "value": "llama.cpp"
+      }
+    ]
+  },
+  "versionInfo": {}
+}

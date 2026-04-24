@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-877v-w3f5-3pcq",
+  "summary": "OpenClaw Feishu thread history and quoted messages bypass sender allowlist",
+  "description": "Summary\nFeishu thread history and quoted messages bypass sender allowlist\n\nCurrent Maintainer Triage\n- Status: open\n- Normalized severity: medium\n- Assessment: Real in shipped v2026.3.28 Feishu because fetched quoted/root/thread context bypasses sender allowlists, and SECURITY.md does not exempt remote sender-allowlist bypasses.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - f45e5a6569aab1d58cc6de25b19f1dc4c8779b85 — 2026-03-31T19:43:54+09:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-877v-w3f5-3pcq"
+  ]
+}

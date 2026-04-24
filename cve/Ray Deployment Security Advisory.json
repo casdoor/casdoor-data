@@ -1,0 +1,10 @@
+{
+  "name": "ray",
+  "code": "Ray Deployment Security Advisory",
+  "summary": "Unauthorized external exposure of Ray may lead to external vulnerability exploitation",
+  "description": "Unauthorized external exposure of Ray may lead to external vulnerability exploitation",
+  "severity": "HIGH",
+  "suggestion": "It is recommended to only expose Ray locally",
+  "rule": "is_internal==\"true\"",
+  "references": []
+}

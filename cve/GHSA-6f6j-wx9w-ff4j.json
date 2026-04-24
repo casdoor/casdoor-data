@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-6f6j-wx9w-ff4j",
+  "summary": "OpenClaw ACPX Windows wrapper shell fallback allowed cwd injection in specific paths",
+  "description": "Summary\nOn Windows ACPX paths, wrapper resolution for .cmd/.bat could fall back to shell execution in ways that allowed cwd influence to alter execution behavior.\n\nImpact\nIn affected Windows ACPX configurations, this could enable command execution integrity loss through cwd-influenced wrapper resolution.\n\nFix\nWrapper resolution now prefers explicit PATH/PATHEXT entrypoint resolution and unwrapped Node/EXE execution, with strict fail-closed handling enabled by default for unresolvable wrapper cases.\n\nAffected and Patched Versions\n- Affected: >= 2026.2.26, < 2026.3.1\n- Patched: 2026.3.1",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.3.1 or later. Wrapper resolution now prefers explicit PATH/PATHEXT entrypoint resolution and unwrapped Node/EXE execution, with strict fail-closed handling enabled by default for unresolvable wrapper cases.",
+  "rule": "version < \"2026.3.1\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-6f6j-wx9w-ff4j"
+  ]
+}

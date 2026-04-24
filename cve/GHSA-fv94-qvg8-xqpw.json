@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-fv94-qvg8-xqpw",
+  "summary": "OpenClaw SSH sandbox tar upload follows symlinks, enabling arbitrary file write on remote host",
+  "description": "Summary\nSSH sandbox tar upload follows symlinks, enabling arbitrary file write on remote host\n\nCurrent Maintainer Triage\n- Status: open\n- Normalized severity: high\n- Assessment: Real in shipped v2026.3.28: SSH sandbox tar upload lacked pre-upload symlink escape rejection until 3d5af14984 on 2026-03-31; maintainers already accepted it and the fix is unreleased.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - 3d5af14984ac1976c747a8e11581d697bd0829dc — 2026-03-31T19:56:45+09:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-fv94-qvg8-xqpw"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-ccx3-fw7q-rr2r",
+  "summary": "OpenClaw Multiple Code Paths Missing Base64 Pre-Allocation Size Checks",
+  "description": "Impact\n\nMultiple Code Paths Missing Base64 Pre-Allocation Size Checks.\n\nSeveral base64 decode paths could allocate before enforcing decoded-size limits.\n\nOpenClaw is a user-controlled local assistant. This advisory is scoped to the OpenClaw trust model and does not assume a multi-tenant service boundary.\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n- Affected versions: <=v2026.4.2\n- Patched versions: 2026.4.8\n\nFix\n\nThe issue was fixed on main and is available in the patched npm version listed above. The verified fixed tree is commit d7c3210cd6f5fdfdc1beff4c9541673e814354d5.\n\nVerification\n\nThe fix was re-checked against main before publication, including targeted regression tests for the affected security boundary.\n\nCredits\n\nThanks @zsxsoft and @KeenSecurityLab for reporting.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to 2026.4.8 or later. The issue was fixed on main and is available in the patched npm version listed above. The verified fixed tree is commit d7c3210cd6f5fdfdc1beff4c9541673e814354d5.",
+  "rule": "version <= \"v2026.4.2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-ccx3-fw7q-rr2r"
+  ]
+}

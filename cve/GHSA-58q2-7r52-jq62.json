@@ -1,8 +1,8 @@
 {
   "name": "OpenClaw",
   "code": "GHSA-58q2-7r52-jq62",
-  "summary": "Summary Path traversal via inbound channel attachment path in ACP dispatch allows arbitrary file read Current Maintainer Triage - Status: open - Normalized severity: medium - Assessment: v2026.3.28 ACP dispatch still reads attachment paths outside the guarded attachment-cache or root checks, and the root-enforcement fix is not yet shipped.",
-  "description": "Summary\n\nPath traversal via inbound channel attachment path in ACP dispatch allows arbitrary file read\n\n\nCurrent Maintainer Triage\n\n- Status: open\n\n- Normalized severity: medium\n\n- Assessment: v2026.3.28 ACP dispatch still reads attachment paths outside the guarded attachment-cache or root checks,\nand the root-enforcement fix is not yet shipped.\n\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n\n- Latest published npm version: 2026.3.31\n\n- Vulnerable version range: <=2026.3.28\n\n- Patched versions: >= 2026.3.31\n\n- First stable tag containing the fix: v2026.3.31",
+  "summary": "OpenClaw Path traversal via inbound channel attachment path in ACP dispatch allows arbitrary file read",
+  "description": "Summary\nPath traversal via inbound channel attachment path in ACP dispatch allows arbitrary file read\n\nCurrent Maintainer Triage\n- Status: open\n- Normalized severity: medium\n- Assessment: v2026.3.28 ACP dispatch still reads attachment paths outside the guarded attachment-cache or root checks, and the root-enforcement fix is not yet shipped.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
   "severity": "MEDIUM",
   "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - 566fb73d9da2d73c0be0d9b8e5b762e4dcd8e81d — 2026-03-30T14:04:02+01:00",
   "rule": "version <= \"2026.3.28\"",

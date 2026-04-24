@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-cwf8-44x6-32c2",
+  "summary": "OpenClaw OpenShell Mirror Sync: Sandbox Escape via Unrestricted File Sync + Symlink Traversal",
+  "description": "Summary\nOpenShell Mirror Sync: Sandbox Escape via Unrestricted File Sync + Symlink Traversal\n\nCurrent Maintainer Triage\n- Status: narrow\n- Normalized severity: high\n- Assessment: v2026.3.28 still has the mirror-boundary bug because shipped c02ee8 only excluded hooks while unreleased 3b9dab is the first full symlink-free upload and download hardening.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.28\n- Patched versions: >= 2026.3.31\n- First stable tag containing the fix: v2026.3.31",
+  "severity": "HIGH",
+  "suggestion": "Upgrade openclaw to >= 2026.3.31 or later. Commit(s) - c02ee8a3a4cb390b23afdf21317aa8b2096854d1 — 2026-03-25T19:59:07Z - 3b9dab0ece4643a9643e6a45459f5c709d3ce320 — 2026-03-30T14:51:44+01:00",
+  "rule": "version <= \"2026.3.28\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-cwf8-44x6-32c2"
+  ]
+}

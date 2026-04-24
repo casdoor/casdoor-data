@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-jj82-76v6-933r",
+  "summary": "OpenClaw Exec allowlist wrapper analysis did not unwrap env/shell dispatch chains",
+  "description": "Summary\nsystem.run exec allowlist analysis treated wrapper binaries as the effective executable and did not fully unwrap env/shell-dispatch wrappers.\nThis allowed wrapper-smuggled payloads (for example env bash -lc ...) to satisfy an allowlist entry for the wrapper while executing non-allowlisted commands.\n\nImpact\nOn affected versions, an actor who can trigger system.run requests under an allowlist policy could bypass intended allowlist restrictions by routing execution through wrapper binaries.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Affected: <= 2026.2.21-2\n- Patched in next release: 2026.2.22 (pre-set below so publish can happen immediately after npm release)",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.2.22 or later. Commit(s) - 2b63592be57782c8946e521bc81286933f0f99c7",
+  "rule": "version <= \"2026.2.21-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-jj82-76v6-933r"
+  ]
+}

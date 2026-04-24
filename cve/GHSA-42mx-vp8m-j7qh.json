@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-42mx-vp8m-j7qh",
+  "summary": "OpenClaw OpenShell `mirror` mode can convert untrusted sandbox files into explicitly enabled workspace hooks and execute them on the host during gateway startup",
+  "description": "Summary\nOpenShell mirror mode can convert untrusted sandbox files into explicitly enabled workspace hooks and execute them on the host during gateway startup\n\nCurrent Maintainer Triage\n- Status: narrow\n- Normalized severity: medium\n- Assessment: Real on shipped <=2026.3.22 OpenShell mirror sync, but exploit needs mirror mode plus hooks enabled plus explicit hook opt-in plus restart, so high is overstated even though the direct fix shipped in v2026.3.28.\n\nAffected Packages / Versions\n- Package: openclaw (npm)\n- Latest published npm version: 2026.3.31\n- Vulnerable version range: <=2026.3.24\n- Patched versions: >= 2026.3.28\n- First stable tag containing the fix: v2026.3.28",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >= 2026.3.28 or later. Commit(s) - c02ee8a3a4cb390b23afdf21317aa8b2096854d1 — 2026-03-25T19:59:07Z",
+  "rule": "version <= \"2026.3.24\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-42mx-vp8m-j7qh"
+  ]
+}

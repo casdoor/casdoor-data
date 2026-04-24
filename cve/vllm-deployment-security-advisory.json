@@ -1,0 +1,10 @@
+{
+  "name": "vllm",
+  "code": "vllm-deployment-security-advisory",
+  "summary": "Exposing vLLM externally may lead to compute resource theft and data abuse",
+  "description": "Exposing vLLM externally may lead to compute resource theft and data abuse",
+  "severity": "LOW",
+  "suggestion": "It is recommended to expose vLLM only locally",
+  "rule": "is_internal==\"true\"",
+  "references": []
+}

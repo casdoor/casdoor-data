@@ -1,0 +1,10 @@
+{
+  "name": "Clawdbot Gateway",
+  "code": "Clawdbot Gateway Deployment Security Notice",
+  "summary": "Exposing Clawdbot Gateway externally may lead to computational power theft and data resource misuse",
+  "description": "Exposing Clawdbot Gateway externally may lead to computational power theft and data resource misuse",
+  "severity": "LOW",
+  "suggestion": "It is recommended to only expose Clawdbot Gateway locally",
+  "rule": "is_internal==\"true\"",
+  "references": []
+}

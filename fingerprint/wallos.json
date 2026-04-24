@@ -1,0 +1,23 @@
+{
+  "name": "wallos",
+  "description": "Wallos is an open-source, self-hostable personal subscription tracker with AI recommendation features (supports Ollama, ChatGPT, Gemini integrations).",
+  "severity": "info",
+  "product": "wallos",
+  "vendor": "ellite",
+  "httpInfo": {
+    "method": "GET",
+    "path": "/",
+    "matchers": [
+      {
+        "pos": "body",
+        "value": "<title>Wallos - Subscription Tracker</title>"
+      }
+    ]
+  },
+  "versionInfo": {
+    "method": "GET",
+    "path": "/",
+    "part": "body",
+    "regex": "styles/theme\\.css\\?v(\\d+\\.\\d+\\.\\d+)"
+  }
+}

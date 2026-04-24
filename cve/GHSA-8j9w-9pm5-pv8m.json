@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-8j9w-9pm5-pv8m",
+  "summary": "OpenClaw DUPLICATE of GHSA-3c6h-g97w-fg78: safeBins denied flags can be bypassed via GNU long-option abbreviations",
+  "description": "Duplicate Notice\nThis draft advisory duplicates GHSA-3c6h-g97w-fg78.\nCanonical advisory: https://github.com/openclaw/openclaw/security/advisories/GHSA-3c6h-g97w-fg78\nUse GHSA-3c6h-g97w-fg78 for tracking/publication. This advisory is published as a duplicate notice.\n\nSummary\nOpenClaw safeBins argument validation allowed denied flags to be bypassed via GNU long-option abbreviations.\n\nThe validator matched denied long flags by exact string and treated unknown long options as allowed, creating a policy/runtime mismatch: commands could be approved as safe-bin usage while runtime behavior reached denied options.\n\nImpact\n- Default safe-bin wc: unauthorized file-read behavior via abbreviated --files0-fro (runtime resolves to --files0-from).\n- Configured safe-bin sort: external program invocation via abbreviated --compress-prog (runtime resolves to --compress-program).\n- Additional hardening gap: unknown or ambiguous long options in safe-bin mode were not rejected fail-closed.\n\nTechnical Details\nAffected paths included safe-bin argv validation and allowlist evaluation:\n- src/infra/exec-safe-bin-policy.ts\n- src/infra/exec-approvals-allowlist.ts\n\nAffected Packages / Versions\n- Ecosystem: npm\n- Package: openclaw\n- Affected versions: <= 2026.2.22-2\n- Fixed in code on main: 2026.2.23 (released)\n\nRemediation\n- Canonicalize long options using GNU-style unique-prefix matching.\n- Reject unknown and ambiguous long options in safe-bin mode (fail-closed).\n- Reject inline values for non-value long flags.\n- Deny additional sort filesystem-dependent flags in safe-bin mode: --random-source, --temporary-directory, -T.\n- Add regression tests for denied-flag abbreviations and fail-closed long-option handling.",
+  "severity": "MEDIUM",
+  "suggestion": "Upgrade openclaw to >=2026.2.23 or later. Commit(s) - 3b8e33037ae2e12af7beb56fcf0346f1f8cbde6f",
+  "rule": "version <= \"2026.2.22-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-8j9w-9pm5-pv8m"
+  ]
+}

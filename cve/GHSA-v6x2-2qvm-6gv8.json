@@ -1,0 +1,12 @@
+{
+  "name": "OpenClaw",
+  "code": "GHSA-v6x2-2qvm-6gv8",
+  "summary": "OpenClaw Gateway auth token reuse in owner ID prompt hashing fallback",
+  "description": "Vulnerability\n\nOpenClaw reused gateway.auth.token (and gateway.remote.token) as a fallback hash secret for owner-ID prompt obfuscation when commands.ownerDisplay=hash and commands.ownerDisplaySecret was unset.\n\nThis created secret dual-use between gateway authentication and prompt metadata hashing.\n\nImpact\n\n- Auth-secret dual-use across security domains (gateway auth and prompt metadata hashing).\n- Hash outputs are visible to third-party model providers in system prompts.\n- No direct plaintext token disclosure.\n- Practical risk is highest when operators use weak gateway tokens and leave owner hash secret unset.\n\nAffected Packages / Versions\n\n- Package: openclaw (npm)\n- Latest affected published version: 2026.2.21-2\n- Vulnerable range: <= 2026.2.21-2\n- Patched version (planned next release): 2026.2.22\n\nAffected Components\n\n- src/agents/cli-runner/helpers.ts\n- src/agents/pi-embedded-runner/run/attempt.ts\n- src/agents/pi-embedded-runner/compact.ts\n\nRemediation\n\n- Added a shared owner-display resolver and secret-generation helper.\n- Removed fallback to gateway.auth.token and gateway.remote.token.\n- Auto-generates and persists a dedicated commands.ownerDisplaySecret when hash mode is enabled and secret is missing.",
+  "severity": "LOW",
+  "suggestion": "Upgrade openclaw to 2026.2.22 or later. Commit(s) - c99e7696e6893083b256f0a6c88fb060f3a76fb7",
+  "rule": "version <= \"2026.2.21-2\"",
+  "references": [
+    "https://github.com/openclaw/openclaw/security/advisories/GHSA-v6x2-2qvm-6gv8"
+  ]
+}
